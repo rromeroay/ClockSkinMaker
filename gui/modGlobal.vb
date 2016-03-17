@@ -33,7 +33,7 @@ Module modGlobal
     Public PATH_SKINS As String = ""
 
     Public Sub Main(ByVal CommandLineArgs() As String)
-        If PATH_SKINS.Trim = "" Then PATH_SKINS = String.Format("{0}\ClockSkin", Application.StartupPath)
+        If PATH_SKINS.Trim = "" Then PATH_SKINS = String.Format("{0}\ClockSkin", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile))
         Dim tmp As String = String.Format("{0}\.tmp", PATH_SKINS)
 
         If Not Directory.Exists(PATH_SKINS) Then

@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Revisar los valores de los atributos del ensamblado
 
 <Assembly: AssemblyTitle("ClockSkinMaker Core Engine")>
-<Assembly: AssemblyDescription("Clock Skin xml files generator")>
+<Assembly: AssemblyDescription("Clock Skin xml files viewer/generator")>
 <Assembly: AssemblyCompany("richi <rromeroa@hotmail.com>")>
 <Assembly: AssemblyProduct("ClockSkinMaker")>
 <Assembly: AssemblyCopyright("Copyright ©  2016")>
