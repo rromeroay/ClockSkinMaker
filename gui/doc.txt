@@ -1,0 +1,54 @@
+﻿<!--
+	<Name> day_array.xml </ name> image name can be a single image or xml configuration file, which is a xml file on behalf of a picture array
+	<CenterX> 0 </ centerX> X coordinates, center of the screen by default
+	<CenterY> 0 </ centerY> Y coordinates, the default screen center
+	<Rotate> 1 </ rotate> rotate hour and minute hands and other identification details, see explanation below roate index
+	<Angle> 60 </ angle> Contact <rotate> match, the deviation angle of rotation, such as the default start 0 degrees, and now you need to start from 60 ° in this configuration
+	<Arraytype> 2 </ arraytype> if the picture is configured with xml, this is used to identify which specific type, see below arraytype index
+	<Color> 1 </ color> Color charging pattern, the default white, black you need to configure 1, otherwise do not configure
+	<Mulrotate> 3 </ mulrotate> Contact <rotate> mix multiple normal rotation speed, the default is 1, the value of a regular rotation speed multiplied by the default configuration, in addition to its absolute value is negative
+	<StartAngle> 150 </ startAngle> Dial text next to the arc start angle
+	<Direction> 1 </ direction> direction of rotation, a clockwise, counterclockwise 2, do not configure the default is clockwise
+	<Textsize> 1 </ textsize> next to the dial arc text font size, do not configure the default 19
+-->
+<!-- 
+rotate index:
+	hour: 1 clockwise rotation angle
+	minute: 2 minute rotation angle
+	second: 3 seconds rotation angle
+	month: 4 month rotation angle
+	week: 5 week rotation angle
+	battery: 6 Battery rotation angle
+
+	7:daynight
+	8:shadowhours
+	9:shadowminutes
+	10:shadowseconds
+-->
+<!--
+	arraytype index: an array of numbers from the smallest start by default, such as 0--9 picture is the first picture you first configure 0,1--12 Configuration 1
+	yearmonthday: 1 numeric date, such as 2015-01-01 ,, using 11 pictures, the first digital 1--10 Zhang 0-9, the first 11 as a date segmentation map
+	monthday: 2 numeric day of the month, such as 10-01, using 11 pictures, the first digital 1--10 Zhang 0-9, the first 11 month of the date of segmentation map
+	month: 3 month (using 12 pictures point to 12 months, 1--12)
+	day: 4 date (using 10 pictures, 0--9)
+	weekday: 5 weeks seven pictures, Sunday to Monday
+	hourminute: 6 digital time as 10:59 am in hours and minutes, the first 0--9 1--10 digital sheet configuration, the first segmentation map 11 picture configuration, the first configuration 12 AM, the first configuration 13 PM,
+	If there is no AM and PM may not deserve this combination configuration center for the digital center, if AMPM will be automatically added to the digital rear
+	hour: 7 hours 0--9 picture
+	minute: 8 minutes 0--9 picture
+	second: 9 seconds 0--9 picture
+	weather: 10 Weather, fixed 15 pictures, picture sequence reference weather_array.xml in Notes
+	temprature: 11 temperature, four pictures, the first negative number, the last unit, configured for 1-10 pictures to digital, the first 11 pictures is negative, the first 12 units of pictures
+	steps: 12 steps, five digits, the high use of special image is empty, the first configuration 0--9 1--10 numbers, the first 11 configuring special pictures
+	heartrate: 13 Last heart rate results, 10 pictures, 0--9
+	battery level: 14 power, three digits, high empty then use special image, the first configuration 0--9 1--10 numbers, the first 11 configuring special pictures
+	special second: 15 seconds running the picture, traveled as a color, did not come for another color, two pictures, the first picture is gone, the second as an ordinary image
+	pedometer text: 97 arc text next to the dial painting, a total number of steps, you can use <startAngle> configuration starting angle, <direction> configuration direction, <textsize> Configure Text Size
+	heartrate text: 98 arc text next to the dial painting, the last heart rate results, you can use <startAngle> configuration starting angle, <direction> configuration direction, <textsize> Configure Text Size
+	charging battery: 99 Rechargeable battery icon position, no trim the picture, as long as the coordinate position can be configured using text and image color <color>
+
+	16: year
+	17: arc_battery
+	18: arc_steps
+	19: moon_phase
+-->
