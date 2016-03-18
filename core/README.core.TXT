@@ -1,4 +1,4 @@
-ClockSkinMaker core 1.3.1.0
+ClockSkinMaker core
 ==================================
 
 Copyright (c) 2016 richi <rromeroa@hotmail.com>
@@ -19,6 +19,10 @@ KNOWN ISSUES AND LIMITATIONS
 
 CHANGELOG
 ==================================
+2016/03/18	1.0.0.0	- Licensed changed to gpl, published in codeplex
+
+PREVIOUS UPDATES FROM GUI INTEGRATED
+==================================
 2016/03/16	1.3.1.0	- Remove install fonts from .watch, the fonts cannot be used (microsoft issue)
 2016/03/15	1.3.0.0	- Added shadow options on ArrayGenerator
 					- Simulate Rotate hours in "automatic" mode
@@ -30,18 +34,14 @@ CHANGELOG
 					- Added "Open folder" button
 					- Simulate Rotate seconds in "automatic" mode
 					- Minur issues on detecting clockskins renames and deletes
-
 2016/03/10	1.1.1.0	- Modified behavior on rotate battery sample, assuming counterclockwise not
 					works on original engine 
-
 2016/03/10	1.1.0.0	- Allows to reuse a rotate element, remove advertisement about this. 
 					This problem causes inconsistencies between the skin shown and saved.
 					- Includes a "simulation/now" engine (can differ from real engine)
 					- When deletes a skin, the panel not was cleared.
 					- Remove BOM mark from xml generated files.
-
 2016/03/04	1.0.1.0	Initial publication
-
 
 
 

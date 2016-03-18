@@ -1,4 +1,4 @@
-ClockSkinMaker core 1.3.1.0
+ClockSkinMaker gui 1.4.0.0
 ==================================
 
 Copyright (c) 2016 richi <rromeroa@hotmail.com>
@@ -19,6 +19,8 @@ KNOWN ISSUES AND LIMITATIONS
 
 CHANGELOG
 ==================================
+2016/03/18	1.4.0.0	- Licensed changed to gpl, published in codeplex (clickonce support for autoupdate)
+					- ClockSkin folder is now on standard "UserProfile folder" 
 2016/03/16	1.3.1.0	- Remove install fonts from .watch, the fonts cannot be used (microsoft issue)
 2016/03/15	1.3.0.0	- Added shadow options on ArrayGenerator
 					- Simulate Rotate hours in "automatic" mode

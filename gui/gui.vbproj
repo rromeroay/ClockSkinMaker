@@ -29,7 +29,7 @@
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
+    <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
@@ -39,12 +39,12 @@
     <UpdateUrl>https://clockskinmaker.codeplex.com/releases/clickonce/</UpdateUrl>
     <ProductName>ClockSkinMaker</ProductName>
     <PublisherName>rromeroa%40hotmail.com</PublisherName>
-    <MinimumRequiredVersion>1.3.1.0</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.4.0.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.3.1.0</ApplicationVersion>
+    <ApplicationVersion>1.4.0.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -225,7 +225,7 @@
     <None Include="Resources\new.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT">
+    <Content Include="README.gui.TXT">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\arrow-up.png" />
