@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("richi <rromeroa@hotmail.com>")>
 <Assembly: AssemblyProduct("ClockSkinMaker")> 
 <Assembly: AssemblyCopyright("Copyright ©  2016")>
-<Assembly: AssemblyTrademark("richi")>
+<Assembly: AssemblyTrademark("richi <rromeroa@hotmail.com>")>
 
 <Assembly: ComVisible(False)>
 
