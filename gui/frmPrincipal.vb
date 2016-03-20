@@ -38,6 +38,12 @@ Public Class frmPrincipal
     Private Sub mnuPrincAbout_Click(sender As Object, e As EventArgs) Handles mnuPrincAbout.Click
         Dim f As New frmAbout : f.ShowDialog()
     End Sub
+    Private Sub mnuPrincHelp_Click(sender As Object, e As EventArgs) Handles mnuPrincHelp.ButtonClick
+        Try
+            Process.Start("http://clockskinmaker.codeplex.com")
+        Catch ex As Exception
+        End Try
+    End Sub
 
     Private Sub canvas_OnMouseMove(sender As CSkinCanvas, e As Point) Handles canvas.OnMouseMove
         lblX.Text = "X:" & e.X

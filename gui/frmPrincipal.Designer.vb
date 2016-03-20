@@ -111,8 +111,9 @@ Partial Class frmPrincipal
         Me.mnuPrincipal = New System.Windows.Forms.ToolStrip()
         Me.mnuPrincFile = New System.Windows.Forms.ToolStripDropDownButton()
         Me.mnuPrincExit = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuPrincAbout = New System.Windows.Forms.ToolStripButton()
         Me.dirWatcher = New System.IO.FileSystemWatcher()
+        Me.mnuPrincHelp = New System.Windows.Forms.ToolStripSplitButton()
+        Me.mnuPrincAbout = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.txtCenterX, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCenterY, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picPrevio, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1058,7 +1059,7 @@ Partial Class frmPrincipal
         'mnuPrincipal
         '
         Me.mnuPrincipal.AutoSize = False
-        Me.mnuPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuPrincFile, Me.mnuPrincAbout})
+        Me.mnuPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuPrincFile, Me.mnuPrincHelp})
         Me.mnuPrincipal.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.mnuPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.mnuPrincipal.Name = "mnuPrincipal"
@@ -1082,19 +1083,27 @@ Partial Class frmPrincipal
         Me.mnuPrincExit.Size = New System.Drawing.Size(152, 22)
         Me.mnuPrincExit.Text = "E&xit"
         '
-        'mnuPrincAbout
-        '
-        Me.mnuPrincAbout.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.mnuPrincAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.mnuPrincAbout.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.mnuPrincAbout.Name = "mnuPrincAbout"
-        Me.mnuPrincAbout.Size = New System.Drawing.Size(53, 23)
-        Me.mnuPrincAbout.Text = "About..."
-        '
         'dirWatcher
         '
         Me.dirWatcher.EnableRaisingEvents = True
         Me.dirWatcher.SynchronizingObject = Me
+        '
+        'mnuPrincHelp
+        '
+        Me.mnuPrincHelp.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.mnuPrincHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.mnuPrincHelp.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuPrincAbout})
+        Me.mnuPrincHelp.Image = CType(resources.GetObject("mnuPrincHelp.Image"), System.Drawing.Image)
+        Me.mnuPrincHelp.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.mnuPrincHelp.Name = "mnuPrincHelp"
+        Me.mnuPrincHelp.Size = New System.Drawing.Size(48, 23)
+        Me.mnuPrincHelp.Text = "&Help"
+        '
+        'mnuPrincAbout
+        '
+        Me.mnuPrincAbout.Name = "mnuPrincAbout"
+        Me.mnuPrincAbout.Size = New System.Drawing.Size(152, 22)
+        Me.mnuPrincAbout.Text = "&About..."
         '
         'frmPrincipal
         '
@@ -1215,7 +1224,6 @@ Partial Class frmPrincipal
     Friend WithEvents mnuPrincipal As ToolStrip
     Friend WithEvents mnuPrincFile As ToolStripDropDownButton
     Friend WithEvents mnuPrincExit As ToolStripMenuItem
-    Friend WithEvents mnuPrincAbout As ToolStripButton
     Friend WithEvents dirWatcher As IO.FileSystemWatcher
     Friend WithEvents optModeTest As RadioButton
     Friend WithEvents optModeEdit As RadioButton
@@ -1243,4 +1251,6 @@ Partial Class frmPrincipal
     Friend WithEvents txtSteps As NumericUpDown
     Friend WithEvents grpMode As GroupBox
     Friend WithEvents cmdFileExplorer As ToolStripButton
+    Friend WithEvents mnuPrincAbout As ToolStripMenuItem
+    Friend WithEvents mnuPrincHelp As ToolStripSplitButton
 End Class
