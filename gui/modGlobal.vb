@@ -31,11 +31,13 @@ Module modGlobal
     End Enum
 
     Public PATH_SKINS As String = ""
+    Public INI As CFileIni = Nothing
 
     Public Sub Main(ByVal CommandLineArgs() As String)
-        If PATH_SKINS.Trim = "" Then PATH_SKINS = String.Format("{0}\ClockSkin", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile))
-        Dim tmp As String = String.Format("{0}\.tmp", PATH_SKINS)
+        INI = New CFileIni(String.Format("{0}\.clockskinmaker", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)))
+        PATH_SKINS = INI.Read("ClockSkin", "Path", String.Format("{0}ClockSkin", INI.Path)).Trim
 
+        Dim tmp As String = String.Format("{0}\.tmp", PATH_SKINS)
         If Not Directory.Exists(PATH_SKINS) Then
             If MessageBox.Show("YOU AGREE THAT YOUR USE OF THIS SOFTWARE IS ENTIRELY AT YOUR OWN RISK.", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) = System.Windows.Forms.DialogResult.No Then End
 

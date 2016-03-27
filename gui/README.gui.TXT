@@ -1,4 +1,4 @@
-ClockSkinMaker gui 1.4.2.0
+ClockSkinMaker gui 1.4.3.0
 ==================================
 
 Copyright (c) 2016 richi <rromeroa@hotmail.com>
@@ -19,6 +19,7 @@ KNOWN ISSUES AND LIMITATIONS
 
 CHANGELOG
 ==================================
+2016/03/27	1.4.3.0	- Incorporates ini file...
 2016/03/20	1.4.2.0	- Testing publish...
 2016/03/18	1.4.1.0	- Licensed changed to gpl, published in codeplex (clickonce support for autoupdate)
 					- ClockSkin folder is now on standard "UserProfile folder" 
