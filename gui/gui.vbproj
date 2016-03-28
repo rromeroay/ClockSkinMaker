@@ -38,13 +38,13 @@
     <InstallUrl>https://clockskinmaker.codeplex.com/releases/clickonce/</InstallUrl>
     <UpdateUrl>https://clockskinmaker.codeplex.com/releases/clickonce/</UpdateUrl>
     <ProductName>ClockSkinMaker</ProductName>
-    <PublisherName>rromeroa%40hotmail.com</PublisherName>
-    <MinimumRequiredVersion>1.4.3.0</MinimumRequiredVersion>
+    <PublisherName>ClockSkinMaker</PublisherName>
+    <MinimumRequiredVersion>1.4.4.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.4.3.0</ApplicationVersion>
+    <ApplicationVersion>1.4.4.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
