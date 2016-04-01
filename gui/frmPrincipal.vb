@@ -124,6 +124,8 @@ Public Class frmPrincipal
         Dim img As Integer = -1
 
         Try
+            lstimg.ImageSize = New Size(32, 32)
+
             lvwExplorer.BeginUpdate()
             lvwExplorer.Items.Clear()
             lvwExplorer.SmallImageList = lstimg

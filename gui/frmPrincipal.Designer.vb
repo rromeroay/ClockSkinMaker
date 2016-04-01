@@ -111,9 +111,9 @@ Partial Class frmPrincipal
         Me.mnuPrincipal = New System.Windows.Forms.ToolStrip()
         Me.mnuPrincFile = New System.Windows.Forms.ToolStripDropDownButton()
         Me.mnuPrincExit = New System.Windows.Forms.ToolStripMenuItem()
-        Me.dirWatcher = New System.IO.FileSystemWatcher()
         Me.mnuPrincHelp = New System.Windows.Forms.ToolStripSplitButton()
         Me.mnuPrincAbout = New System.Windows.Forms.ToolStripMenuItem()
+        Me.dirWatcher = New System.IO.FileSystemWatcher()
         CType(Me.txtCenterX, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCenterY, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picPrevio, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,7 +196,7 @@ Partial Class frmPrincipal
         Me.lstToolBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lstToolBox.Location = New System.Drawing.Point(1, 13)
         Me.lstToolBox.Name = "lstToolBox"
-        Me.lstToolBox.Size = New System.Drawing.Size(126, 441)
+        Me.lstToolBox.Size = New System.Drawing.Size(126, 450)
         Me.lstToolBox.TabIndex = 0
         '
         'cmdDel
@@ -206,7 +206,7 @@ Partial Class frmPrincipal
         Me.cmdDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdDel.FlatAppearance.BorderSize = 0
         Me.cmdDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdDel.Location = New System.Drawing.Point(266, 38)
+        Me.cmdDel.Location = New System.Drawing.Point(246, 38)
         Me.cmdDel.Name = "cmdDel"
         Me.cmdDel.Size = New System.Drawing.Size(20, 20)
         Me.cmdDel.TabIndex = 1
@@ -232,7 +232,7 @@ Partial Class frmPrincipal
         Me.grpCanvas.Margin = New System.Windows.Forms.Padding(0)
         Me.grpCanvas.Name = "grpCanvas"
         Me.grpCanvas.Padding = New System.Windows.Forms.Padding(1, 0, 0, 1)
-        Me.grpCanvas.Size = New System.Drawing.Size(289, 341)
+        Me.grpCanvas.Size = New System.Drawing.Size(269, 350)
         Me.grpCanvas.TabIndex = 0
         Me.grpCanvas.TabStop = False
         Me.grpCanvas.Text = "Layers"
@@ -253,7 +253,7 @@ Partial Class frmPrincipal
         Me.lvwCanvas.Name = "lvwCanvas"
         Me.lvwCanvas.ShowGroups = False
         Me.lvwCanvas.ShowItemToolTips = True
-        Me.lvwCanvas.Size = New System.Drawing.Size(256, 326)
+        Me.lvwCanvas.Size = New System.Drawing.Size(236, 335)
         Me.lvwCanvas.SmallImageList = Me.imgCanvas
         Me.lvwCanvas.TabIndex = 0
         Me.lvwCanvas.UseCompatibleStateImageBehavior = False
@@ -283,7 +283,7 @@ Partial Class frmPrincipal
         Me.cmdUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdUp.FlatAppearance.BorderSize = 0
         Me.cmdUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdUp.Location = New System.Drawing.Point(266, 291)
+        Me.cmdUp.Location = New System.Drawing.Point(246, 300)
         Me.cmdUp.Name = "cmdUp"
         Me.cmdUp.Size = New System.Drawing.Size(20, 20)
         Me.cmdUp.TabIndex = 2
@@ -296,7 +296,7 @@ Partial Class frmPrincipal
         Me.cmdDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdDown.FlatAppearance.BorderSize = 0
         Me.cmdDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdDown.Location = New System.Drawing.Point(266, 317)
+        Me.cmdDown.Location = New System.Drawing.Point(246, 326)
         Me.cmdDown.Name = "cmdDown"
         Me.cmdDown.Size = New System.Drawing.Size(20, 20)
         Me.cmdDown.TabIndex = 3
@@ -329,10 +329,10 @@ Partial Class frmPrincipal
         Me.grpProps.Controls.Add(Me.cmdColor2)
         Me.grpProps.Controls.Add(Me.cmdColor1)
         Me.grpProps.Controls.Add(Me.lblComma)
-        Me.grpProps.Location = New System.Drawing.Point(545, 391)
+        Me.grpProps.Location = New System.Drawing.Point(545, 400)
         Me.grpProps.Margin = New System.Windows.Forms.Padding(0)
         Me.grpProps.Name = "grpProps"
-        Me.grpProps.Size = New System.Drawing.Size(289, 198)
+        Me.grpProps.Size = New System.Drawing.Size(269, 198)
         Me.grpProps.TabIndex = 1
         Me.grpProps.TabStop = False
         Me.grpProps.Text = "Properties"
@@ -553,8 +553,8 @@ Partial Class frmPrincipal
         Me.splPrincipal.Panel2.Controls.Add(Me.picPrevio)
         Me.splPrincipal.Panel2.Controls.Add(Me.pnlCanvas)
         Me.splPrincipal.Panel2MinSize = 800
-        Me.splPrincipal.Size = New System.Drawing.Size(1008, 592)
-        Me.splPrincipal.SplitterDistance = 167
+        Me.splPrincipal.Size = New System.Drawing.Size(1008, 601)
+        Me.splPrincipal.SplitterDistance = 187
         Me.splPrincipal.TabIndex = 1
         Me.splPrincipal.TabStop = False
         '
@@ -570,7 +570,7 @@ Partial Class frmPrincipal
         Me.tblExplorer.RowCount = 2
         Me.tblExplorer.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
         Me.tblExplorer.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblExplorer.Size = New System.Drawing.Size(167, 592)
+        Me.tblExplorer.Size = New System.Drawing.Size(187, 601)
         Me.tblExplorer.TabIndex = 0
         '
         'lvwExplorer
@@ -588,7 +588,7 @@ Partial Class frmPrincipal
         Me.lvwExplorer.Name = "lvwExplorer"
         Me.lvwExplorer.ShowGroups = False
         Me.lvwExplorer.ShowItemToolTips = True
-        Me.lvwExplorer.Size = New System.Drawing.Size(161, 554)
+        Me.lvwExplorer.Size = New System.Drawing.Size(181, 563)
         Me.lvwExplorer.TabIndex = 1
         Me.lvwExplorer.UseCompatibleStateImageBehavior = False
         Me.lvwExplorer.View = System.Windows.Forms.View.Details
@@ -605,7 +605,7 @@ Partial Class frmPrincipal
         Me.toolExplorer.Location = New System.Drawing.Point(3, 3)
         Me.toolExplorer.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
         Me.toolExplorer.Name = "toolExplorer"
-        Me.toolExplorer.Size = New System.Drawing.Size(161, 32)
+        Me.toolExplorer.Size = New System.Drawing.Size(181, 32)
         Me.toolExplorer.TabIndex = 0
         Me.toolExplorer.Text = "ClockSkin actions"
         '
@@ -898,7 +898,7 @@ Partial Class frmPrincipal
         Me.grpToolBox.Location = New System.Drawing.Point(3, 133)
         Me.grpToolBox.Name = "grpToolBox"
         Me.grpToolBox.Padding = New System.Windows.Forms.Padding(1, 0, 3, 2)
-        Me.grpToolBox.Size = New System.Drawing.Size(130, 456)
+        Me.grpToolBox.Size = New System.Drawing.Size(130, 465)
         Me.grpToolBox.TabIndex = 0
         Me.grpToolBox.TabStop = False
         Me.grpToolBox.Text = "Toolbox"
@@ -1074,19 +1074,14 @@ Partial Class frmPrincipal
         Me.mnuPrincFile.Image = CType(resources.GetObject("mnuPrincFile.Image"), System.Drawing.Image)
         Me.mnuPrincFile.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.mnuPrincFile.Name = "mnuPrincFile"
-        Me.mnuPrincFile.Size = New System.Drawing.Size(38, 23)
+        Me.mnuPrincFile.Size = New System.Drawing.Size(36, 23)
         Me.mnuPrincFile.Text = "&File"
         '
         'mnuPrincExit
         '
         Me.mnuPrincExit.Name = "mnuPrincExit"
-        Me.mnuPrincExit.Size = New System.Drawing.Size(152, 22)
+        Me.mnuPrincExit.Size = New System.Drawing.Size(92, 22)
         Me.mnuPrincExit.Text = "E&xit"
-        '
-        'dirWatcher
-        '
-        Me.dirWatcher.EnableRaisingEvents = True
-        Me.dirWatcher.SynchronizingObject = Me
         '
         'mnuPrincHelp
         '
@@ -1096,14 +1091,19 @@ Partial Class frmPrincipal
         Me.mnuPrincHelp.Image = CType(resources.GetObject("mnuPrincHelp.Image"), System.Drawing.Image)
         Me.mnuPrincHelp.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.mnuPrincHelp.Name = "mnuPrincHelp"
-        Me.mnuPrincHelp.Size = New System.Drawing.Size(48, 23)
+        Me.mnuPrincHelp.Size = New System.Drawing.Size(44, 23)
         Me.mnuPrincHelp.Text = "&Help"
         '
         'mnuPrincAbout
         '
         Me.mnuPrincAbout.Name = "mnuPrincAbout"
-        Me.mnuPrincAbout.Size = New System.Drawing.Size(152, 22)
+        Me.mnuPrincAbout.Size = New System.Drawing.Size(115, 22)
         Me.mnuPrincAbout.Text = "&About..."
+        '
+        'dirWatcher
+        '
+        Me.dirWatcher.EnableRaisingEvents = True
+        Me.dirWatcher.SynchronizingObject = Me
         '
         'frmPrincipal
         '
