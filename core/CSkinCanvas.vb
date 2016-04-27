@@ -138,14 +138,14 @@ Public Class CSkinCanvas
                             End Select
                         Case TIPO_MODO.NOW
                             If elemento.Status <> ESTADO_ELEMENTO.LOADED Then Continue For
-                            Dim value As Single = 0
+                            Dim value As Double = 0
                             Select Case elemento.Tipo
                                 Case TIPO_ELEMENTO.rotate_hour, TIPO_ELEMENTO.rotate_shadow_hour, TIPO_ELEMENTO.array_hour : value = ahora.Hour + ahora.Minute / 60
                                 Case TIPO_ELEMENTO.rotate_minute, TIPO_ELEMENTO.rotate_shadow_minute, TIPO_ELEMENTO.array_minute : value = ahora.Minute '+ ahora.Second / 60
                                 Case TIPO_ELEMENTO.rotate_second, TIPO_ELEMENTO.rotate_shadow_second, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_special_second : value = ahora.Second + ahora.Millisecond / 1000
                                 Case TIPO_ELEMENTO.rotate_month, TIPO_ELEMENTO.array_month : value = ahora.Month
                                 Case TIPO_ELEMENTO.rotate_weekday, TIPO_ELEMENTO.array_weekday : value = DateAndTime.Weekday(ahora, FirstDayOfWeek.Monday)
-                                Case TIPO_ELEMENTO.rotate_daynight : value = ahora.Hour
+                                Case TIPO_ELEMENTO.rotate_24hrs : value = ahora.Hour
 
                                 Case TIPO_ELEMENTO.array_day : value = ahora.Day
                                 Case TIPO_ELEMENTO.array_hourminute : value = String.Format("{0:00}{1:00}", ahora.Hour, ahora.Minute)
@@ -165,14 +165,14 @@ Public Class CSkinCanvas
                         Case TIPO_MODO.TEST
                             If elemento.Status <> ESTADO_ELEMENTO.LOADED Then Continue For
 
-                            Dim value As Single = 0
+                            Dim value As Double = 0
                             Select Case elemento.Tipo
                                 Case TIPO_ELEMENTO.rotate_hour, TIPO_ELEMENTO.rotate_shadow_hour, TIPO_ELEMENTO.array_hour : value = Me.Hour
                                 Case TIPO_ELEMENTO.rotate_minute, TIPO_ELEMENTO.rotate_shadow_minute, TIPO_ELEMENTO.array_minute : value = Me.Minutes
                                 Case TIPO_ELEMENTO.rotate_second, TIPO_ELEMENTO.rotate_shadow_second, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_special_second : value = Me.Seconds
                                 Case TIPO_ELEMENTO.rotate_month, TIPO_ELEMENTO.array_month : value = Me.Month
                                 Case TIPO_ELEMENTO.rotate_weekday, TIPO_ELEMENTO.array_weekday : value = Me.Weekday
-                                Case TIPO_ELEMENTO.rotate_daynight : value = Me.Hour
+                                Case TIPO_ELEMENTO.rotate_24hrs : value = Me.Hour
                                 Case TIPO_ELEMENTO.array_day : value = Me.Day
                                 Case TIPO_ELEMENTO.array_hourminute : value = String.Format("{0:00}{1:00}", Me.Hour, Me.Minutes)
                                 Case TIPO_ELEMENTO.array_monthday : value = String.Format("{0:00}{1:00}", Me.Month, Me.Day)
@@ -433,7 +433,7 @@ Public Class CSkinCanvas
                     For Each element As CSkinPanel In Elements
                         If element.Status <> ESTADO_ELEMENTO.LOADED Then Continue For
 
-                        Dim value As Single = 0
+                        Dim value As Double = 0
                         Select Case element.Tipo
                             Case TIPO_ELEMENTO.array_charging_batt : Continue For
                             Case TIPO_ELEMENTO.rotate_hour, TIPO_ELEMENTO.rotate_shadow_hour, TIPO_ELEMENTO.array_hour : value = 10
@@ -441,7 +441,7 @@ Public Class CSkinCanvas
                             Case TIPO_ELEMENTO.rotate_second, TIPO_ELEMENTO.rotate_shadow_second, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_special_second : value = 34
                             Case TIPO_ELEMENTO.rotate_month, TIPO_ELEMENTO.array_month : value = 9
                             Case TIPO_ELEMENTO.rotate_weekday, TIPO_ELEMENTO.array_weekday : value = 3
-                            Case TIPO_ELEMENTO.rotate_daynight : value = 18
+                            Case TIPO_ELEMENTO.rotate_24hrs : value = 18
                             Case TIPO_ELEMENTO.array_day : value = 26
                             Case TIPO_ELEMENTO.array_hourminute : value = String.Format("{0:00}{1:00}", 10, 9)
                             Case TIPO_ELEMENTO.array_monthday : value = String.Format("{0:00}{1:00}", 9, 26)
@@ -633,7 +633,7 @@ Public Class CSkinCanvas
                             Case 4 : elemento = Me.CreateElement(TIPO_ELEMENTO.rotate_month)
                             Case 5 : elemento = Me.CreateElement(TIPO_ELEMENTO.rotate_weekday)
                             Case 6 : elemento = Me.CreateElement(TIPO_ELEMENTO.rotate_battery)
-                            Case 7 : elemento = Me.CreateElement(TIPO_ELEMENTO.rotate_daynight)
+                            Case 7 : elemento = Me.CreateElement(TIPO_ELEMENTO.rotate_24hrs)
                             Case 8 : elemento = Me.CreateElement(TIPO_ELEMENTO.rotate_shadow_hour)
                             Case 9 : elemento = Me.CreateElement(TIPO_ELEMENTO.rotate_shadow_minute)
                             Case 10 : elemento = Me.CreateElement(TIPO_ELEMENTO.rotate_shadow_second)

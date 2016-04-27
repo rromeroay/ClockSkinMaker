@@ -19,6 +19,8 @@ KNOWN ISSUES AND LIMITATIONS
 
 CHANGELOG
 ==================================
+2016/04/23	1.0.1.0	- Changed description rotate_daynight to rotate_24hrs
+					  Changed precision of CSkinPanel sample value
 2016/03/18	1.0.0.0	- Licensed changed to gpl, published in codeplex
 
 PREVIOUS UPDATES FROM GUI INTEGRATED

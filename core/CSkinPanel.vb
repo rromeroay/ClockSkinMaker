@@ -29,7 +29,7 @@ Public Enum TIPO_ELEMENTO As Integer
     rotate_month
     rotate_weekday
     rotate_battery
-    rotate_daynight
+    rotate_24hrs
     rotate_shadow_hour
     rotate_shadow_minute
     rotate_shadow_second
@@ -361,7 +361,7 @@ Public Class CSkinPanel
                         Case TIPO_ELEMENTO.rotate_month : writer.WriteString(String.Format("{0}", 4))
                         Case TIPO_ELEMENTO.rotate_weekday : writer.WriteString(String.Format("{0}", 5))
                         Case TIPO_ELEMENTO.rotate_battery : writer.WriteString(String.Format("{0}", 6))
-                        Case TIPO_ELEMENTO.rotate_daynight : writer.WriteString(String.Format("{0}", 7))
+                        Case TIPO_ELEMENTO.rotate_24hrs : writer.WriteString(String.Format("{0}", 7))
                         Case TIPO_ELEMENTO.rotate_shadow_hour : writer.WriteString(String.Format("{0}", 8))
                         Case TIPO_ELEMENTO.rotate_shadow_minute : writer.WriteString(String.Format("{0}", 9))
                         Case TIPO_ELEMENTO.rotate_shadow_second : writer.WriteString(String.Format("{0}", 10))
@@ -733,7 +733,7 @@ Public Class CSkinPanel
     End Function
 
     Private _imagen_sample As Bitmap = Nothing
-    Public Function Sample(value As Single) As Bitmap
+    Public Function Sample(value As Double) As Bitmap
         Try
             'free memory
             If Not _imagen_sample Is Nothing Then _imagen_sample.Dispose() : _imagen_sample = Nothing
@@ -763,7 +763,7 @@ Public Class CSkinPanel
                         Case TIPO_ELEMENTO.rotate_month : ang += (360 * range / 12) * (value Mod 12) '0..11
                         Case TIPO_ELEMENTO.rotate_weekday : ang += (360 * range / 7) * ((value - 1) Mod 7) '0..6
                         Case TIPO_ELEMENTO.rotate_battery : ang += (180 * range / 100) * (value Mod 101) '0..100
-                        Case TIPO_ELEMENTO.rotate_daynight : ang += (360 * range / 24) * (value Mod 24)
+                        Case TIPO_ELEMENTO.rotate_24hrs : ang += (360 * range / 24) * (value Mod 24)
                         Case TIPO_ELEMENTO.image : ang = 0
                         Case Else : Throw New Exception("Sample rotate not implemented.")
                     End Select

@@ -19,6 +19,7 @@ KNOWN ISSUES AND LIMITATIONS
 
 CHANGELOG
 ==================================
+2016/04/27	1.4.6.0	- Recompiled with ClockSkinMaker.core 1.0.1.0
 2016/04/01	1.4.5.0	- Changed size of icons in explorer
 2016/03/28	1.4.4.0	- Testing publish...
 2016/03/27	1.4.3.0	- Incorporates ini file...
