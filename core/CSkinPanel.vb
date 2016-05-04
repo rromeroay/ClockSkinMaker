@@ -653,7 +653,7 @@ Public Class CSkinPanel
                     _imagen.Image = JoinImages(0)
                 Case TIPO_ELEMENTO.array_temprature
                     If Me.Drawables.Count < 12 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(10, 0, 0, 11)
+                    _imagen.Image = JoinImages(0, 0, 11)
                 Case TIPO_ELEMENTO.array_steps, TIPO_ELEMENTO.array_arc_steps
                     If Me.Drawables.Count < 10 Then Throw New Exception("Incorrect number of drawables.")
                     _imagen.Image = JoinImages(0, 0, 0, 0, 0)
