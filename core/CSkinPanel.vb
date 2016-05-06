@@ -732,9 +732,13 @@ Public Class CSkinPanel
         Return bmp
     End Function
 
+    Private _ant_value As Double = -1
     Private _imagen_sample As Bitmap = Nothing
     Public Function Sample(value As Double) As Bitmap
         Try
+            'If value = _ant_value Then Return _imagen_sample
+            '_ant_value = value
+
             'free memory
             If Not _imagen_sample Is Nothing Then _imagen_sample.Dispose() : _imagen_sample = Nothing
 
