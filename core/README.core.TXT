@@ -19,6 +19,8 @@ KNOWN ISSUES AND LIMITATIONS
 
 CHANGELOG
 ==================================
+2016/11/12	1.2.0.0	- Implemented leading character functionality into "array_steps" (creation arrays and preview). 
+					  Thanks to "Derk-Jan Woltjer" who has warned of this functionality and collaborated with tests.
 2016/06/02	1.1.1.0	- Remove previous/actual value compare in CSkinPanel.Sample
 2016/05/28	1.1.0.0	- Rebuild with Framework 4.6
 2016/05/04	1.0.2.0	- Changed temperature arrays view size (exclude minus)

@@ -106,7 +106,7 @@ Public Class CSkinCanvas
         Set(value As TIPO_MODO)
             _mode = value
             Select Case _mode
-                Case TIPO_MODO.NOW, TIPO_MODO.TEST : _timer.Change(0, 16)
+                Case TIPO_MODO.NOW, TIPO_MODO.TEST : _timer.Change(0, 50)
                 Case Else : _timer.Change(Threading.Timeout.Infinite, Threading.Timeout.Infinite) : Me.Refresh()
             End Select
         End Set
@@ -458,6 +458,7 @@ Public Class CSkinCanvas
 
                         g.DrawImage(element.Sample(value), 0, 0, 400, 400) 'Los samples van sobre 400x400,para que esté visible tenga el angulo que tenga
                     Next
+
                 End Using
                 bmp.Save(String.Format("{0}\clock_skin_model.png", ruta), Imaging.ImageFormat.Png)
             End Using

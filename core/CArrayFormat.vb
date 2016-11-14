@@ -61,10 +61,10 @@ Public Class CArrayFormat
                 Filenames = New List(Of String)({"num_0", "num_1", "num_2", "num_3", "num_4", "num_5", "num_6", "num_7", "num_8", "num_9", "num_minus"})
                 Colors = New List(Of Color)({Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent})
             Case TIPO_ELEMENTO.array_steps, TIPO_ELEMENTO.array_arc_steps
-                Contents = New List(Of String)({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
-                Descriptions = New List(Of String)({"Number 0", "Number 1", "Number 2", "Number 3", "Number 4", "Number 5", "Number 6", "Number 7", "Number 8", "Number 9"})
-                Filenames = New List(Of String)({"num_0", "num_1", "num_2", "num_3", "num_4", "num_5", "num_6", "num_7", "num_8", "num_9"})
-                Colors = New List(Of Color)({Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent})
+                Contents = New List(Of String)({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"})
+                Descriptions = New List(Of String)({"Number 0", "Number 1", "Number 2", "Number 3", "Number 4", "Number 5", "Number 6", "Number 7", "Number 8", "Number 9", "Leading char"})
+                Filenames = New List(Of String)({"num_0", "num_1", "num_2", "num_3", "num_4", "num_5", "num_6", "num_7", "num_8", "num_9", "lead"})
+                Colors = New List(Of Color)({Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent})
             Case TIPO_ELEMENTO.array_year
                 Contents = New List(Of String)({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Globalization.DateTimeFormatInfo.CurrentInfo.DateSeparator})
                 Descriptions = New List(Of String)({"Number 0", "Number 1", "Number 2", "Number 3", "Number 4", "Number 5", "Number 6", "Number 7", "Number 8", "Number 9", "Date separator"})

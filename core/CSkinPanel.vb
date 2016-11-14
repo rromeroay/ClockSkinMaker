@@ -655,8 +655,11 @@ Public Class CSkinPanel
                     If Me.Drawables.Count < 12 Then Throw New Exception("Incorrect number of drawables.")
                     _imagen.Image = JoinImages(0, 0, 11)
                 Case TIPO_ELEMENTO.array_steps, TIPO_ELEMENTO.array_arc_steps
-                    If Me.Drawables.Count < 10 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0, 0, 0, 0)
+                    Select Case Me.Drawables.Count
+                        Case Is >= 11 : _imagen.Image = JoinImages(10, 10, 8, 0, 0)
+                        Case 10 : _imagen.Image = JoinImages(0, 0, 0, 0, 0)
+                        Case Else : Throw New Exception("Incorrect number of drawables.")
+                    End Select
                 Case TIPO_ELEMENTO.array_heartrate
                     If Me.Drawables.Count < 10 Then Throw New Exception("Incorrect number of drawables.")
                     _imagen.Image = JoinImages(0, 0)
@@ -853,8 +856,14 @@ Public Class CSkinPanel
                             s = String.Format("{0:0000}", value)
                             tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), Integer.Parse(s(2)), Integer.Parse(s(3)))
                         Case TIPO_ELEMENTO.array_steps, TIPO_ELEMENTO.array_arc_steps
-                            s = String.Format("{0:00000}", value)
-                            tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), Integer.Parse(s(2)), Integer.Parse(s(3)), Integer.Parse(s(4)))
+                            s = String.Format("{0}", Integer.Parse(value)).PadLeft(5, " ") 'leading with spaces
+
+                            Select Case Me.Drawables.Count
+                                Case Is >= 11 'Exists an image to lead zeros
+                                    tmp = JoinImages(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))), If(s(3) = " "c, 10, Integer.Parse(s(3))), If(s(4) = " "c, 10, Integer.Parse(s(4))))
+                                Case 10
+                                    tmp = JoinImages(If(s(0) = " "c, 0, Integer.Parse(s(0))), If(s(1) = " "c, 0, Integer.Parse(s(1))), If(s(2) = " "c, 0, Integer.Parse(s(2))), If(s(3) = " "c, 0, Integer.Parse(s(3))), If(s(4) = " "c, 0, Integer.Parse(s(4))))
+                            End Select
 
                             '''''''''''''''''''''''''''''''PINTAR ARCO!
                             If Me.Tipo = TIPO_ELEMENTO.array_arc_steps Then
