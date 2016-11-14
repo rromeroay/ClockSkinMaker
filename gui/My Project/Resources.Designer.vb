@@ -71,6 +71,53 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Busca una cadena traducida similar a                     GNU GENERAL PUBLIC LICENSE
+        '''                       Version 3, 29 June 2007
+        '''
+        ''' Copyright (C) 2007 Free Software Foundation, Inc. &lt;http://fsf.org/&gt;
+        ''' Everyone is permitted to copy and distribute verbatim copies
+        ''' of this license document, but changing it is not allowed.
+        '''
+        '''                            Preamble
+        '''
+        '''  The GNU General Public License is a free, copyleft license for
+        '''software and other kinds of works.
+        '''
+        '''  The licenses for most software and other practical works are designed
+        '''to [resto de la cadena truncado]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property LICENSE() As String
+            Get
+                Return ResourceManager.GetString("LICENSE", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca una cadena traducida similar a ClockSkinMaker gui
+        '''==================================
+        '''
+        '''Copyright (c) 2016 richi &lt;rromeroa@hotmail.com&gt;
+        '''
+        '''ClockSkinMaker is distributed under the GNU General Public License GPLv3 or
+        '''higher, please see LICENSE.TXT for details.
+        '''
+        '''The included software is provided as-is by Ricardo Romero.
+        '''
+        '''IMPORTANT
+        '''==================================
+        '''YOU AGREE THAT YOUR USE OF THIS SOFTWARE IS ENTIRELY AT YOUR OWN RISK.
+        '''
+        '''KNOWN ISSUES AND LIMITATIONS
+        '''==================================
+        '''- The &quot;pedometer text&quot; and &quot;he [resto de la cadena truncado]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property README() As String
+            Get
+                Return ResourceManager.GetString("README", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca un recurso adaptado de tipo System.Byte[].
         '''</summary>
         Friend ReadOnly Property SampleLibZip() As Byte()

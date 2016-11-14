@@ -34,6 +34,9 @@ Module modGlobal
     Public INI As CFileIni = Nothing
 
     Public Sub Main(ByVal CommandLineArgs() As String)
+        File.WriteAllText(String.Format("{0}\LICENSE.txt", Application.StartupPath), My.Resources.LICENSE)
+        File.WriteAllText(String.Format("{0}\README.gui.txt", Application.StartupPath), My.Resources.README)
+
         INI = New CFileIni(String.Format("{0}\.clockskinmaker", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)))
         PATH_SKINS = INI.Read("ClockSkin", "Path", String.Format("{0}ClockSkin", INI.Path)).Trim
 
