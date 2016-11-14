@@ -458,6 +458,7 @@ Public Class CSkinCanvas
 
                         g.DrawImage(element.Sample(value), 0, 0, 400, 400) 'Los samples van sobre 400x400,para que esté visible tenga el angulo que tenga
                     Next
+                    g.DrawImage(My.Resources.sign, 0, 0, 400, 400)
 
                 End Using
                 bmp.Save(String.Format("{0}\clock_skin_model.png", ruta), Imaging.ImageFormat.Png)

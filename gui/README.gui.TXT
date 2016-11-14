@@ -20,7 +20,7 @@ KNOWN ISSUES AND LIMITATIONS
 CHANGELOG
 ==================================
 2016/11/12	1.5.0.0	- Updated ClockSkinMaker.core to 1.2.0.0. Implemented leading character functionality into "array_steps" (creation arrays and preview.). 
-					  Thanks to "Derk-Jan Woltjer" who has warned of this functionality and collaborated with tests.
+					Thanks to "Derk-Jan Woltjer" who has warned of this functionality and collaborated with tests.
 2016/06/03	1.4.8.0	- Recompiled with ClockSkinMaker.core 1.1.1.0
 2016/05/28	1.4.7.0	- Rebuild with Framework 4.6
 2016/04/27	1.4.6.0	- Recompiled with ClockSkinMaker.core 1.0.1.0

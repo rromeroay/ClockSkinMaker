@@ -519,6 +519,13 @@ Public Class CSkinPanel
                     If Me.FileName.Trim.ToLower <> destino.Trim.ToLower Then System.IO.File.Copy(Me.FileName, destino, True)
                     Me._filename = destino
 
+                    'FileNames are not allowed starts with "."
+                    If IO.Path.GetFileName(_filename).StartsWith(".") Then
+                        destino = String.Format("{0}\{1}", IO.Path.GetDirectoryName(_filename), IO.Path.GetFileName(_filename).Substring(1))
+                        System.IO.File.Delete(destino) : System.IO.File.Move(_filename, destino)
+                        Me._filename = destino
+                    End If
+
                     Dim escala_width As Double = Me.Size.Width / Me._loaded_size.Width
                     Dim escala_heigth As Double = Me.Size.Height / Me._loaded_size.Height
                     If escala_heigth = 0 OrElse escala_width = 0 Then Throw New Exception("Image size not valid.")
@@ -553,6 +560,13 @@ Public Class CSkinPanel
 
                         If Drawables(cont).Trim.ToLower <> destino.Trim.ToLower Then System.IO.File.Copy(Drawables(cont), destino, True)
                         Drawables(cont) = destino
+
+                        'FileNames are not allowed starts with "."
+                        If IO.Path.GetFileName(Drawables(cont)).StartsWith(".") Then
+                            destino = String.Format("{0}\{1}", IO.Path.GetDirectoryName(Drawables(cont)), IO.Path.GetFileName(Drawables(cont)).Substring(1))
+                            System.IO.File.Delete(destino) : System.IO.File.Move(Drawables(cont), destino)
+                            Drawables(cont) = destino
+                        End If
 
                         'Ha cambiado el tamaño del control, se deben redimensionar las imagenes
                         If Me.Size <> Me._loaded_size Then ResizeImageFile(destino, escala_width, escala_heigth)
