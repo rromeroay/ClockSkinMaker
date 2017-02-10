@@ -19,6 +19,8 @@ KNOWN ISSUES AND LIMITATIONS
 
 CHANGELOG
 ==================================
+2017/02/11	1.6.0.0 - Updated ClockSkinMaker.core to 1.3.0.0. Implementing firmware bugs (rotate battery, anticlokwise)
+					- Changed size of icons in explorer, iu controls bigger
 2016/11/12  1.5.0.0 - Updated ClockSkinMaker.core to 1.2.0.0.
                     Implemented leading character functionality into "array_steps" (creation arrays and preview). 
                     Thanks to "Derk-Jan Woltjer" who has warned of this functionality and collaborated with tests.
