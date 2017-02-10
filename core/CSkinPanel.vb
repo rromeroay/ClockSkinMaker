@@ -715,6 +715,7 @@ Public Class CSkinPanel
     Private Function JoinImages(ParamArray indices() As Integer) As Bitmap
         Dim h_max As Integer = 0
         Dim w_max As Integer = 0
+        Dim w_total As Integer = 0
 
         'Calcular ancho final
         For i As Integer = 0 To indices.Length - 1
@@ -724,16 +725,20 @@ Public Class CSkinPanel
                 Using b As Bitmap = System.Drawing.Image.FromStream(fs)
                     h_max = Math.Max(h_max, b.Height)
                     w_max = Math.Max(w_max, b.Width)
+                    w_total += b.Width
                 End Using
                 fs.Close()
             End Using
         Next
         If h_max = 0 Then h_max = 1
         If w_max = 0 Then w_max = 1
+        If w_total = 0 Then w_total = 1
 
-        Dim w_ant As Integer = 0
-        Dim bmp As Bitmap = New Bitmap(w_max * indices.Length, h_max)
+        'w_total = w_max * indices.Length
+        Dim bmp As Bitmap = New Bitmap(w_total, h_max)
         Using g As Graphics = Graphics.FromImage(bmp)
+            Dim w_ant As Integer = 0
+
             For i As Integer = 0 To indices.Length - 1
                 If indices(i) >= Drawables.Count OrElse Not IO.File.Exists(Drawables(indices(i))) Then Continue For
 

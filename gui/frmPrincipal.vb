@@ -69,7 +69,7 @@ Public Class frmPrincipal
     End Sub
     Private Sub Init_Form()
         lstToolBox.Items.Clear()
-        For Each p In [Enum].GetValues(GetType(TIPO_ELEMENTO))
+        For Each p As TIPO_ELEMENTO In [Enum].GetValues(GetType(TIPO_ELEMENTO))
             Select Case True
                 Case p = TIPO_ELEMENTO.ROTATE_END : Continue For
                 Case p >= TIPO_ELEMENTO.ARRAY_END : Continue For
@@ -85,13 +85,13 @@ Public Class frmPrincipal
 
         '''''''''''''''''''''''''TESTS VALUES, FILL DEFAULTS
         cmbMonth.Items.Clear()
-        For i = 1 To 12
+        For i As Integer = 1 To 12
             cmbMonth.Items.Add(MonthName(i, True))
         Next
         cmbMonth.SelectedIndex = canvas.Month - 1
 
         cmbWeekday.Items.Clear()
-        For i = 1 To 7
+        For i As Integer = 1 To 7
             cmbWeekday.Items.Add(WeekdayName(i, True, FirstDayOfWeek.Monday))
         Next
         cmbWeekday.SelectedIndex = canvas.Weekday - 1
