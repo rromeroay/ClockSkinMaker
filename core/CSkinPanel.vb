@@ -152,7 +152,7 @@ Public Class CSkinPanel
         End Get
         Set(value As Integer)
             _centerX = value
-            Me.Left = _centerX + 200 - (Me.Width) / 2
+            Me.Left = _centerX + 200 - Me.Width / 2
             Me.Invalidate()
         End Set
     End Property
@@ -679,8 +679,8 @@ Public Class CSkinPanel
                     _imagen.Image = JoinImages(0, 0)
                 Case TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.array_arc_battery
                     Select Case Me.Drawables.Count
-                        Case Is >= 12 : _imagen.Image = JoinImages(0, 0, 11)
-                        Case Is >= 10 : _imagen.Image = JoinImages(0, 0, 10)
+                        Case Is >= 12 : _imagen.Image = JoinImages(10, 0, 0, 11)
+                        Case Is >= 11 : _imagen.Image = JoinImages(10, 0, 0)
                         Case Else : Throw New Exception("Incorrect number of drawables.")
                     End Select
                 Case TIPO_ELEMENTO.array_year
@@ -713,34 +713,34 @@ Public Class CSkinPanel
 
     End Sub
     Private Function JoinImages(ParamArray indices() As Integer) As Bitmap
-        Dim w_total As Integer = 0
-        Dim h_total As Integer = 0
+        Dim h_max As Integer = 0
+        Dim w_max As Integer = 0
 
         'Calcular ancho final
         For i As Integer = 0 To indices.Length - 1
-            If Not IO.File.Exists(Drawables(indices(i))) Then Continue For
+            If indices(i) >= Drawables.Count OrElse Not IO.File.Exists(Drawables(indices(i))) Then Continue For
 
             Using fs As New System.IO.FileStream(Drawables(indices(i)), IO.FileMode.Open, IO.FileAccess.Read)
                 Using b As Bitmap = System.Drawing.Image.FromStream(fs)
-                    h_total = Math.Max(h_total, b.Height)
-                    w_total += b.Width
+                    h_max = Math.Max(h_max, b.Height)
+                    w_max = Math.Max(w_max, b.Width)
                 End Using
                 fs.Close()
             End Using
         Next
+        If h_max = 0 Then h_max = 1
+        If w_max = 0 Then w_max = 1
 
-        If w_total = 0 OrElse h_total = 0 Then Throw New Exception("There are no valid images.")
-
-        Dim xant As Integer = 0
-        Dim bmp As Bitmap = New Bitmap(w_total, h_total)
+        Dim w_ant As Integer = 0
+        Dim bmp As Bitmap = New Bitmap(w_max * indices.Length, h_max)
         Using g As Graphics = Graphics.FromImage(bmp)
             For i As Integer = 0 To indices.Length - 1
-                If Not IO.File.Exists(Drawables(indices(i))) Then Continue For
+                If indices(i) >= Drawables.Count OrElse Not IO.File.Exists(Drawables(indices(i))) Then Continue For
 
                 Using fs As New System.IO.FileStream(Drawables(indices(i)), IO.FileMode.Open, IO.FileAccess.Read)
                     Using b As Bitmap = System.Drawing.Image.FromStream(fs)
-                        g.DrawImage(b, xant, 0, b.Width, b.Height) '(bmp.Height - b.Height) \ 2
-                        xant += b.Width
+                        g.DrawImage(b, w_ant, 0, b.Width, b.Height) '(bmp.Height - b.Height) \ 2
+                        w_ant += b.Width
                     End Using
                 End Using
             Next
@@ -770,11 +770,12 @@ Public Class CSkinPanel
                     Dim ang As Single = 0
                     Dim range As Single = 1
 
+                    'Bug firmware¿?: Start angle only allowed in battery 
                     Select Case Tipo
-                        Case TIPO_ELEMENTO.rotate_battery
-                            range = IIf(StartAngle Mod 180 <> 0, StartAngle, 180) / 180
-                        Case Else
-                            range = IIf(StartAngle Mod 360 <> 0, StartAngle, 360) / 360
+                        'Case TIPO_ELEMENTO.rotate_battery
+                        'range = IIf(StartAngle Mod 180 <> 0, StartAngle, 180) / 180
+                        'Case Else
+                        'range = IIf(StartAngle Mod 360 <> 0, StartAngle, 360) / 360
                     End Select
 
                     Select Case Tipo
@@ -783,11 +784,38 @@ Public Class CSkinPanel
                         Case TIPO_ELEMENTO.rotate_second, TIPO_ELEMENTO.rotate_shadow_second : ang += (360 * range / 60) * (value Mod 60)
                         Case TIPO_ELEMENTO.rotate_month : ang += (360 * range / 12) * (value Mod 12) '0..11
                         Case TIPO_ELEMENTO.rotate_weekday : ang += (360 * range / 7) * ((value - 1) Mod 7) '0..6
-                        Case TIPO_ELEMENTO.rotate_battery : ang += (180 * range / 100) * (value Mod 101) '0..100
+                        Case TIPO_ELEMENTO.rotate_battery ': ang += (180 * range / 100) * (value Mod 101) '0..100
+                            ang = (value Mod 101) / 100 '0..100 
+                            If Me.StartAngle > 0 Then
+                                ang = ang * (Me.StartAngle - Me.Angle)
+                            Else
+                                ang = ang * (180 - Me.Angle)
+                            End If
                         Case TIPO_ELEMENTO.rotate_24hrs : ang += (360 * range / 24) * (value Mod 24)
                         Case TIPO_ELEMENTO.image : ang = 0
                         Case Else : Throw New Exception("Sample rotate not implemented.")
                     End Select
+
+                    'Bug in firmware¿?: counter value in seconds affects next seconds elements directions 
+                    Dim counterwise As Boolean = False
+                    For Each elemento As CSkinPanel In Me.SkinCanvas.Elements
+                        Dim sametype As Boolean = False
+
+                        Select Case elemento.Tipo
+                            Case TIPO_ELEMENTO.rotate_hour, TIPO_ELEMENTO.rotate_shadow_hour : sametype = (Me.Tipo = TIPO_ELEMENTO.rotate_hour OrElse Me.Tipo = TIPO_ELEMENTO.rotate_shadow_hour)
+                            Case TIPO_ELEMENTO.rotate_minute, TIPO_ELEMENTO.rotate_shadow_minute : sametype = (Me.Tipo = TIPO_ELEMENTO.rotate_minute OrElse Me.Tipo = TIPO_ELEMENTO.rotate_shadow_minute)
+                            Case TIPO_ELEMENTO.rotate_second, TIPO_ELEMENTO.rotate_shadow_second : sametype = (Me.Tipo = TIPO_ELEMENTO.rotate_second OrElse Me.Tipo = TIPO_ELEMENTO.rotate_shadow_second)
+                            Case Else : sametype = (Me.Tipo = elemento.Tipo)
+                        End Select
+
+                        If sametype Then
+                            Select Case elemento.Direction
+                                Case 2 : counterwise = Not counterwise
+                            End Select
+                        End If
+                        If elemento Is Me Then Exit For
+                    Next
+                    If counterwise Then ang = ang * -1
 
                     Select Case Me.MulRotate
                         Case 0
@@ -795,8 +823,9 @@ Public Class CSkinPanel
                         Case Else : ang = ang * Me.MulRotate
                     End Select
 
-                    Select Case Me.Direction
-                        Case 2 : ang = ang * -1
+                    'Bug in firmware¿?: if Mulrotate>0 adds angle twice, default is 1
+                    Select Case Me.MulRotate
+                        Case >= 0 : ang += Me.Angle
                     End Select
 
                     ang += Me.Angle    'Angulo inicial
@@ -917,20 +946,13 @@ Public Class CSkinPanel
                                     tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), 11)
                             End Select
                         Case TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.array_arc_battery
-                            s = String.Format("{0:000}", value)
+                            s = String.Format("{0}", Integer.Parse(value)).PadLeft(3, " ") 'leading with spaces
                             Select Case Me.Drawables.Count
                                 Case Is >= 12 'Con %
-                                    Select Case (s(0))
-                                        Case "0" : tmp = JoinImages(Integer.Parse(s(1)), Integer.Parse(s(2)), 11)
-                                        Case Else : tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), Integer.Parse(s(2)), 11)
-                                    End Select
+                                    tmp = JoinImages(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))), 11)
                                 Case Else
-                                    Select Case (s(0))
-                                        Case "0" : tmp = JoinImages(Integer.Parse(s(1)), Integer.Parse(s(2)))
-                                        Case Else : tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), Integer.Parse(s(2)))
-                                    End Select
+                                    tmp = JoinImages(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))))
                             End Select
-
 
                             '''''''''''''''''''''''''''''''PINTAR ARCO!
                             If Me.Tipo = TIPO_ELEMENTO.array_arc_battery Then

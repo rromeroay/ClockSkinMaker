@@ -78,7 +78,7 @@ Public Class frmSearchArray
     End Sub
 
     Private Sub lblLinkDir_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles lblLinkDir.LinkClicked
-        dlgOpenDir.SelectedPath = IIf(My.Computer.FileSystem.DirectoryExists(_ruta_act), _ruta_act, PATH_SKINS)
+        dlgOpenDir.SelectedPath = If(IO.Directory.Exists(_ruta_act), _ruta_act, PATH_SKINS)
         If dlgOpenDir.ShowDialog() <> System.Windows.Forms.DialogResult.OK Then Return
         InitForm(dlgOpenDir.SelectedPath, _fichero_act)
     End Sub
@@ -122,7 +122,7 @@ Public Class frmSearchArray
                 MB(TIPO_DBG.ERR, String.Format("Image {0} cannot be loaded.", drawable), True)
             End Try
 
-            img.Size = New Size(img.BackgroundImage.Size.Width * 1.5, img.BackgroundImage.Height * 1.5)
+            img.Size = New Size(img.BackgroundImage.Size.Width * 1.0, img.BackgroundImage.Height * 1.0)
             tblImages.Controls.Add(img)
         Next
         tblImages.ResumeLayout()
@@ -138,7 +138,7 @@ Public Class frmSearchArray
 
     Private Sub cmdFileExplorer_Click(sender As Object, e As EventArgs) Handles cmdFileExplorer.Click
         Try
-            Dim ruta As String = IIf(IO.Directory.Exists(_ruta_act), _ruta_act, PATH_SKINS)
+            Dim ruta As String = If(IO.Directory.Exists(_ruta_act), _ruta_act, PATH_SKINS)
             If IO.Directory.Exists(ruta) Then Process.Start("explorer.exe", ruta)
         Catch ex As Exception
         End Try

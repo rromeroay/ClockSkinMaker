@@ -124,7 +124,7 @@ Public Class frmPrincipal
         Dim img As Integer = -1
 
         Try
-            lstimg.ImageSize = New Size(32, 32)
+            lstimg.ImageSize = New Size(48, 48)
 
             lvwExplorer.BeginUpdate()
             lvwExplorer.Items.Clear()
@@ -366,9 +366,26 @@ Public Class frmPrincipal
         If lvwCanvas.SelectedItems.Count <= 0 Then Return
         lvwCanvas.SelectedItems(0).Tag.ColorBat = cmbColorBat.SelectedIndex
     End Sub
-    Private Sub txt_MulRotate_ValueChanged(sender As System.Object, e As System.EventArgs) Handles txtMulRotate.ValueChanged
+    Private Sub txtMulRotate_ValueChanged(sender As System.Object, e As System.EventArgs) Handles txtMulRotate.ValueChanged
         If lvwCanvas.SelectedItems.Count <= 0 Then Return
         lvwCanvas.SelectedItems(0).Tag.MulRotate = Me.txtMulRotate.Value
+    End Sub
+
+    ' allelimo - select all field on tab and enter mouse
+    Private txtSelectByMouse As Boolean = False
+    Private Sub txt_GotFocus(sender As System.Object, e As System.EventArgs) Handles txtCenterX.GotFocus, txtCenterY.GotFocus, txtWidth.GotFocus, txtHeight.GotFocus, txtMulRotate.GotFocus, txtAngle.GotFocus, txtStartAngle.GotFocus, txtBatt.GotFocus, txtDay.GotFocus, txtHeart.GotFocus, txtHour.GotFocus, txtMinutes.GotFocus, txtSeconds.GotFocus, txtSteps.GotFocus, txtTemperature.GotFocus, txtYear.GotFocus
+        Dim box As NumericUpDown = sender
+        box.Select(0, box.Value.ToString.Length)
+    End Sub
+    Private Sub txt_Enter(sender As System.Object, e As System.EventArgs) Handles txtCenterX.Enter, txtCenterY.Enter, txtWidth.Enter, txtHeight.Enter, txtMulRotate.Enter, txtAngle.Enter, txtStartAngle.Enter, txtBatt.Enter, txtDay.Enter, txtHeart.Enter, txtHour.Enter, txtMinutes.Enter, txtSeconds.Enter, txtSteps.Enter, txtTemperature.Enter, txtYear.Enter
+        Dim box As NumericUpDown = sender
+        box.Select(0, box.Value.ToString.Length)
+        If MouseButtons = MouseButtons.Left Then txtSelectByMouse = True
+    End Sub
+    Private Sub txt_MouseDown(sender As System.Object, e As MouseEventArgs) Handles txtCenterX.MouseDown, txtCenterY.MouseDown, txtWidth.MouseDown, txtHeight.MouseDown, txtMulRotate.MouseDown, txtAngle.MouseDown, txtStartAngle.MouseDown, txtBatt.MouseDown, txtDay.MouseDown, txtHeart.MouseDown, txtHour.MouseDown, txtMinutes.MouseDown, txtSeconds.MouseDown, txtSteps.MouseDown, txtTemperature.MouseDown, txtYear.MouseDown
+        Dim box As NumericUpDown = sender
+        If txtSelectByMouse Then box.Select(0, box.Value.ToString.Length)
+        txtSelectByMouse = False
     End Sub
 
     Private Sub cmdColorDel_Click(sender As Object, e As EventArgs) Handles cmdColorDel.Click
@@ -688,8 +705,6 @@ Public Class frmPrincipal
             Case sender Is cmbWeather : If cmbWeather.SelectedIndex >= 0 Then canvas.Weather = cmbWeather.SelectedIndex
         End Select
     End Sub
-
-
 End Class
 
 

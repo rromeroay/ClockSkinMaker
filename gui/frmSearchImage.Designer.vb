@@ -41,14 +41,14 @@ Partial Class frmSearchImage
         Me.tblImages.BackColor = System.Drawing.Color.White
         Me.tblImages.Location = New System.Drawing.Point(2, 28)
         Me.tblImages.Name = "tblImages"
-        Me.tblImages.Size = New System.Drawing.Size(607, 310)
+        Me.tblImages.Size = New System.Drawing.Size(787, 514)
         Me.tblImages.TabIndex = 2
         '
         'cmdCancel
         '
         Me.cmdCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdCancel.Location = New System.Drawing.Point(508, 344)
+        Me.cmdCancel.Location = New System.Drawing.Point(688, 548)
         Me.cmdCancel.Name = "cmdCancel"
         Me.cmdCancel.Size = New System.Drawing.Size(75, 23)
         Me.cmdCancel.TabIndex = 3
@@ -62,7 +62,7 @@ Partial Class frmSearchImage
         Me.lblLinkDir.AutoEllipsis = True
         Me.lblLinkDir.Location = New System.Drawing.Point(2, 3)
         Me.lblLinkDir.Name = "lblLinkDir"
-        Me.lblLinkDir.Size = New System.Drawing.Size(581, 22)
+        Me.lblLinkDir.Size = New System.Drawing.Size(761, 22)
         Me.lblLinkDir.TabIndex = 0
         Me.lblLinkDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -78,7 +78,7 @@ Partial Class frmSearchImage
         Me.cmdFileExplorer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdFileExplorer.FlatAppearance.BorderSize = 0
         Me.cmdFileExplorer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdFileExplorer.Location = New System.Drawing.Point(588, 4)
+        Me.cmdFileExplorer.Location = New System.Drawing.Point(768, 4)
         Me.cmdFileExplorer.Name = "cmdFileExplorer"
         Me.cmdFileExplorer.Size = New System.Drawing.Size(21, 21)
         Me.cmdFileExplorer.TabIndex = 1
@@ -91,7 +91,7 @@ Partial Class frmSearchImage
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.CancelButton = Me.cmdCancel
-        Me.ClientSize = New System.Drawing.Size(612, 372)
+        Me.ClientSize = New System.Drawing.Size(792, 576)
         Me.Controls.Add(Me.cmdFileExplorer)
         Me.Controls.Add(Me.lblLinkDir)
         Me.Controls.Add(Me.cmdCancel)

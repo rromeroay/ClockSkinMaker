@@ -84,16 +84,17 @@ Public Class frmSearchImage
     End Sub
 
     Private Sub lblLinkDir_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles lblLinkDir.LinkClicked
-        dlgOpenDir.SelectedPath = IIf(IO.Directory.Exists(_ruta_act), _ruta_act, PATH_SKINS)
+        dlgOpenDir.SelectedPath = If(IO.Directory.Exists(_ruta_act), _ruta_act, PATH_SKINS)
         If dlgOpenDir.ShowDialog() <> System.Windows.Forms.DialogResult.OK Then Return
         InitForm(dlgOpenDir.SelectedPath)
     End Sub
 
     Private Sub cmdFileExplorer_Click(sender As Object, e As EventArgs) Handles cmdFileExplorer.Click
         Try
-            Dim ruta As String = IIf(IO.Directory.Exists(_ruta_act), _ruta_act, PATH_SKINS)
+            Dim ruta As String = If(IO.Directory.Exists(_ruta_act), _ruta_act, PATH_SKINS)
             If IO.Directory.Exists(ruta) Then Process.Start("explorer.exe", ruta)
         Catch ex As Exception
         End Try
     End Sub
+
 End Class

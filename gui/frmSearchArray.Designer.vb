@@ -44,14 +44,14 @@ Partial Class frmSearchArray
         Me.tblImages.BackColor = System.Drawing.Color.White
         Me.tblImages.Location = New System.Drawing.Point(2, 55)
         Me.tblImages.Name = "tblImages"
-        Me.tblImages.Size = New System.Drawing.Size(407, 299)
+        Me.tblImages.Size = New System.Drawing.Size(787, 307)
         Me.tblImages.TabIndex = 4
         '
         'cmdCancel
         '
         Me.cmdCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdCancel.Location = New System.Drawing.Point(308, 360)
+        Me.cmdCancel.Location = New System.Drawing.Point(688, 368)
         Me.cmdCancel.Name = "cmdCancel"
         Me.cmdCancel.Size = New System.Drawing.Size(75, 23)
         Me.cmdCancel.TabIndex = 6
@@ -65,7 +65,7 @@ Partial Class frmSearchArray
         Me.lblLinkDir.AutoEllipsis = True
         Me.lblLinkDir.Location = New System.Drawing.Point(2, 3)
         Me.lblLinkDir.Name = "lblLinkDir"
-        Me.lblLinkDir.Size = New System.Drawing.Size(381, 22)
+        Me.lblLinkDir.Size = New System.Drawing.Size(761, 22)
         Me.lblLinkDir.TabIndex = 0
         Me.lblLinkDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -82,13 +82,13 @@ Partial Class frmSearchArray
         Me.cmbXML.FormattingEnabled = True
         Me.cmbXML.Location = New System.Drawing.Point(2, 29)
         Me.cmbXML.Name = "cmbXML"
-        Me.cmbXML.Size = New System.Drawing.Size(199, 21)
+        Me.cmbXML.Size = New System.Drawing.Size(579, 21)
         Me.cmbXML.TabIndex = 2
         '
         'cmdOk
         '
         Me.cmdOk.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdOk.Location = New System.Drawing.Point(227, 360)
+        Me.cmdOk.Location = New System.Drawing.Point(607, 368)
         Me.cmdOk.Name = "cmdOk"
         Me.cmdOk.Size = New System.Drawing.Size(75, 23)
         Me.cmdOk.TabIndex = 5
@@ -103,7 +103,7 @@ Partial Class frmSearchArray
         Me.cmdXML.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdXML.FlatAppearance.BorderSize = 0
         Me.cmdXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdXML.Location = New System.Drawing.Point(207, 30)
+        Me.cmdXML.Location = New System.Drawing.Point(587, 30)
         Me.cmdXML.Name = "cmdXML"
         Me.cmdXML.Size = New System.Drawing.Size(21, 21)
         Me.cmdXML.TabIndex = 3
@@ -117,7 +117,7 @@ Partial Class frmSearchArray
         Me.cmdFileExplorer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdFileExplorer.FlatAppearance.BorderSize = 0
         Me.cmdFileExplorer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdFileExplorer.Location = New System.Drawing.Point(388, 4)
+        Me.cmdFileExplorer.Location = New System.Drawing.Point(768, 4)
         Me.cmdFileExplorer.Name = "cmdFileExplorer"
         Me.cmdFileExplorer.Size = New System.Drawing.Size(21, 21)
         Me.cmdFileExplorer.TabIndex = 1
@@ -130,7 +130,7 @@ Partial Class frmSearchArray
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.CancelButton = Me.cmdCancel
-        Me.ClientSize = New System.Drawing.Size(412, 388)
+        Me.ClientSize = New System.Drawing.Size(792, 396)
         Me.Controls.Add(Me.cmdFileExplorer)
         Me.Controls.Add(Me.cmdXML)
         Me.Controls.Add(Me.cmdOk)

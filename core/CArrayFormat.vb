@@ -96,8 +96,8 @@ Public Class CArrayFormat
                 Colors = New List(Of Color)({Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent})
             Case TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.array_arc_battery
                 Contents = New List(Of String)({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", "%"})
-                Descriptions = New List(Of String)({"Number 0", "Number 1", "Number 2", "Number 3", "Number 4", "Number 5", "Number 6", "Number 7", "Number 8", "Number 9", "Empty", "% (optional)"})
-                Filenames = New List(Of String)({"num_0", "num_1", "num_2", "num_3", "num_4", "num_5", "num_6", "num_7", "num_8", "num_9", "none", "percent"})
+                Descriptions = New List(Of String)({"Number 0", "Number 1", "Number 2", "Number 3", "Number 4", "Number 5", "Number 6", "Number 7", "Number 8", "Number 9", "Leading char", "% (optional)"})
+                Filenames = New List(Of String)({"num_0", "num_1", "num_2", "num_3", "num_4", "num_5", "num_6", "num_7", "num_8", "num_9", "lead", "percent"})
                 Colors = New List(Of Color)({Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent, Color.Transparent})
             Case Else : Throw New Exception("Array generation not implemented.")
         End Select
@@ -148,10 +148,9 @@ Public Class CArrayFormat
                 Case TIPO_ELEMENTO.array_weekday
                     ImagesPerType = 1
                 Case TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.array_arc_battery
-                    scales(10) = 0
                     Select Case True
-                        Case Contents(11) <> "" : ImagesPerType = 3
-                        Case Else : ImagesPerType = 2 : num_imagenes -= 1
+                        Case Contents(11) <> "" : ImagesPerType = 4
+                        Case Else : ImagesPerType = 3 : num_imagenes -= 1
                     End Select
             End Select
 

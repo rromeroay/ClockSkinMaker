@@ -150,8 +150,8 @@ Partial Class frmPrincipal
         'txtCenterX
         '
         Me.txtCenterX.Location = New System.Drawing.Point(112, 36)
-        Me.txtCenterX.Maximum = New Decimal(New Integer() {1024, 0, 0, 0})
-        Me.txtCenterX.Minimum = New Decimal(New Integer() {1024, 0, 0, -2147483648})
+        Me.txtCenterX.Maximum = New Decimal(New Integer() {4096, 0, 0, 0})
+        Me.txtCenterX.Minimum = New Decimal(New Integer() {4096, 0, 0, -2147483648})
         Me.txtCenterX.Name = "txtCenterX"
         Me.txtCenterX.Size = New System.Drawing.Size(61, 20)
         Me.txtCenterX.TabIndex = 4
@@ -160,8 +160,8 @@ Partial Class frmPrincipal
         'txtCenterY
         '
         Me.txtCenterY.Location = New System.Drawing.Point(181, 36)
-        Me.txtCenterY.Maximum = New Decimal(New Integer() {1024, 0, 0, 0})
-        Me.txtCenterY.Minimum = New Decimal(New Integer() {1024, 0, 0, -2147483648})
+        Me.txtCenterY.Maximum = New Decimal(New Integer() {4096, 0, 0, 0})
+        Me.txtCenterY.Minimum = New Decimal(New Integer() {4096, 0, 0, -2147483648})
         Me.txtCenterY.Name = "txtCenterY"
         Me.txtCenterY.Size = New System.Drawing.Size(61, 20)
         Me.txtCenterY.TabIndex = 5
@@ -206,7 +206,7 @@ Partial Class frmPrincipal
         Me.cmdDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdDel.FlatAppearance.BorderSize = 0
         Me.cmdDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdDel.Location = New System.Drawing.Point(246, 38)
+        Me.cmdDel.Location = New System.Drawing.Point(349, 38)
         Me.cmdDel.Name = "cmdDel"
         Me.cmdDel.Size = New System.Drawing.Size(20, 20)
         Me.cmdDel.TabIndex = 1
@@ -232,7 +232,7 @@ Partial Class frmPrincipal
         Me.grpCanvas.Margin = New System.Windows.Forms.Padding(0)
         Me.grpCanvas.Name = "grpCanvas"
         Me.grpCanvas.Padding = New System.Windows.Forms.Padding(1, 0, 0, 1)
-        Me.grpCanvas.Size = New System.Drawing.Size(269, 350)
+        Me.grpCanvas.Size = New System.Drawing.Size(372, 350)
         Me.grpCanvas.TabIndex = 0
         Me.grpCanvas.TabStop = False
         Me.grpCanvas.Text = "Layers"
@@ -253,7 +253,7 @@ Partial Class frmPrincipal
         Me.lvwCanvas.Name = "lvwCanvas"
         Me.lvwCanvas.ShowGroups = False
         Me.lvwCanvas.ShowItemToolTips = True
-        Me.lvwCanvas.Size = New System.Drawing.Size(236, 335)
+        Me.lvwCanvas.Size = New System.Drawing.Size(339, 335)
         Me.lvwCanvas.SmallImageList = Me.imgCanvas
         Me.lvwCanvas.TabIndex = 0
         Me.lvwCanvas.UseCompatibleStateImageBehavior = False
@@ -262,12 +262,12 @@ Partial Class frmPrincipal
         'colType
         '
         Me.colType.Text = "Type"
-        Me.colType.Width = 133
+        Me.colType.Width = 152
         '
         'colName
         '
         Me.colName.Text = "Name"
-        Me.colName.Width = 120
+        Me.colName.Width = 180
         '
         'imgCanvas
         '
@@ -283,7 +283,7 @@ Partial Class frmPrincipal
         Me.cmdUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdUp.FlatAppearance.BorderSize = 0
         Me.cmdUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdUp.Location = New System.Drawing.Point(246, 300)
+        Me.cmdUp.Location = New System.Drawing.Point(349, 300)
         Me.cmdUp.Name = "cmdUp"
         Me.cmdUp.Size = New System.Drawing.Size(20, 20)
         Me.cmdUp.TabIndex = 2
@@ -296,7 +296,7 @@ Partial Class frmPrincipal
         Me.cmdDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdDown.FlatAppearance.BorderSize = 0
         Me.cmdDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdDown.Location = New System.Drawing.Point(246, 326)
+        Me.cmdDown.Location = New System.Drawing.Point(349, 326)
         Me.cmdDown.Name = "cmdDown"
         Me.cmdDown.Size = New System.Drawing.Size(20, 20)
         Me.cmdDown.TabIndex = 3
@@ -332,7 +332,7 @@ Partial Class frmPrincipal
         Me.grpProps.Location = New System.Drawing.Point(545, 400)
         Me.grpProps.Margin = New System.Windows.Forms.Padding(0)
         Me.grpProps.Name = "grpProps"
-        Me.grpProps.Size = New System.Drawing.Size(269, 198)
+        Me.grpProps.Size = New System.Drawing.Size(372, 198)
         Me.grpProps.TabIndex = 1
         Me.grpProps.TabStop = False
         Me.grpProps.Text = "Properties"
@@ -403,7 +403,7 @@ Partial Class frmPrincipal
         'txtWidth
         '
         Me.txtWidth.Location = New System.Drawing.Point(112, 58)
-        Me.txtWidth.Maximum = New Decimal(New Integer() {1024, 0, 0, 0})
+        Me.txtWidth.Maximum = New Decimal(New Integer() {4096, 0, 0, 0})
         Me.txtWidth.Name = "txtWidth"
         Me.txtWidth.Size = New System.Drawing.Size(61, 20)
         Me.txtWidth.TabIndex = 7
@@ -421,7 +421,7 @@ Partial Class frmPrincipal
         'txtHeight
         '
         Me.txtHeight.Location = New System.Drawing.Point(181, 58)
-        Me.txtHeight.Maximum = New Decimal(New Integer() {1024, 0, 0, 0})
+        Me.txtHeight.Maximum = New Decimal(New Integer() {4096, 0, 0, 0})
         Me.txtHeight.Name = "txtHeight"
         Me.txtHeight.Size = New System.Drawing.Size(61, 20)
         Me.txtHeight.TabIndex = 8
@@ -452,8 +452,8 @@ Partial Class frmPrincipal
         'txtMulRotate
         '
         Me.txtMulRotate.Location = New System.Drawing.Point(112, 80)
-        Me.txtMulRotate.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.txtMulRotate.Minimum = New Decimal(New Integer() {1000, 0, 0, -2147483648})
+        Me.txtMulRotate.Maximum = New Decimal(New Integer() {1024, 0, 0, 0})
+        Me.txtMulRotate.Minimum = New Decimal(New Integer() {1024, 0, 0, -2147483648})
         Me.txtMulRotate.Name = "txtMulRotate"
         Me.txtMulRotate.Size = New System.Drawing.Size(61, 20)
         Me.txtMulRotate.TabIndex = 10
@@ -537,7 +537,7 @@ Partial Class frmPrincipal
         'splPrincipal.Panel1
         '
         Me.splPrincipal.Panel1.Controls.Add(Me.tblExplorer)
-        Me.splPrincipal.Panel1MinSize = 150
+        Me.splPrincipal.Panel1MinSize = 200
         '
         'splPrincipal.Panel2
         '
@@ -553,8 +553,8 @@ Partial Class frmPrincipal
         Me.splPrincipal.Panel2.Controls.Add(Me.picPrevio)
         Me.splPrincipal.Panel2.Controls.Add(Me.pnlCanvas)
         Me.splPrincipal.Panel2MinSize = 800
-        Me.splPrincipal.Size = New System.Drawing.Size(1008, 601)
-        Me.splPrincipal.SplitterDistance = 187
+        Me.splPrincipal.Size = New System.Drawing.Size(1124, 601)
+        Me.splPrincipal.SplitterDistance = 200
         Me.splPrincipal.TabIndex = 1
         Me.splPrincipal.TabStop = False
         '
@@ -570,7 +570,7 @@ Partial Class frmPrincipal
         Me.tblExplorer.RowCount = 2
         Me.tblExplorer.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
         Me.tblExplorer.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblExplorer.Size = New System.Drawing.Size(187, 601)
+        Me.tblExplorer.Size = New System.Drawing.Size(200, 601)
         Me.tblExplorer.TabIndex = 0
         '
         'lvwExplorer
@@ -588,7 +588,7 @@ Partial Class frmPrincipal
         Me.lvwExplorer.Name = "lvwExplorer"
         Me.lvwExplorer.ShowGroups = False
         Me.lvwExplorer.ShowItemToolTips = True
-        Me.lvwExplorer.Size = New System.Drawing.Size(181, 563)
+        Me.lvwExplorer.Size = New System.Drawing.Size(194, 563)
         Me.lvwExplorer.TabIndex = 1
         Me.lvwExplorer.UseCompatibleStateImageBehavior = False
         Me.lvwExplorer.View = System.Windows.Forms.View.Details
@@ -605,7 +605,7 @@ Partial Class frmPrincipal
         Me.toolExplorer.Location = New System.Drawing.Point(3, 3)
         Me.toolExplorer.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
         Me.toolExplorer.Name = "toolExplorer"
-        Me.toolExplorer.Size = New System.Drawing.Size(181, 32)
+        Me.toolExplorer.Size = New System.Drawing.Size(194, 32)
         Me.toolExplorer.TabIndex = 0
         Me.toolExplorer.Text = "ClockSkin actions"
         '
@@ -1053,7 +1053,7 @@ Partial Class frmPrincipal
         '
         Me.staBar.Location = New System.Drawing.Point(0, 631)
         Me.staBar.Name = "staBar"
-        Me.staBar.Size = New System.Drawing.Size(1016, 22)
+        Me.staBar.Size = New System.Drawing.Size(1132, 22)
         Me.staBar.TabIndex = 1
         '
         'mnuPrincipal
@@ -1063,7 +1063,7 @@ Partial Class frmPrincipal
         Me.mnuPrincipal.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.mnuPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.mnuPrincipal.Name = "mnuPrincipal"
-        Me.mnuPrincipal.Size = New System.Drawing.Size(1016, 26)
+        Me.mnuPrincipal.Size = New System.Drawing.Size(1132, 26)
         Me.mnuPrincipal.TabIndex = 0
         Me.mnuPrincipal.Text = "Main menu"
         '
@@ -1074,7 +1074,7 @@ Partial Class frmPrincipal
         Me.mnuPrincFile.Image = CType(resources.GetObject("mnuPrincFile.Image"), System.Drawing.Image)
         Me.mnuPrincFile.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.mnuPrincFile.Name = "mnuPrincFile"
-        Me.mnuPrincFile.Size = New System.Drawing.Size(36, 23)
+        Me.mnuPrincFile.Size = New System.Drawing.Size(38, 23)
         Me.mnuPrincFile.Text = "&File"
         '
         'mnuPrincExit
@@ -1091,13 +1091,13 @@ Partial Class frmPrincipal
         Me.mnuPrincHelp.Image = CType(resources.GetObject("mnuPrincHelp.Image"), System.Drawing.Image)
         Me.mnuPrincHelp.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.mnuPrincHelp.Name = "mnuPrincHelp"
-        Me.mnuPrincHelp.Size = New System.Drawing.Size(44, 23)
+        Me.mnuPrincHelp.Size = New System.Drawing.Size(48, 23)
         Me.mnuPrincHelp.Text = "&Help"
         '
         'mnuPrincAbout
         '
         Me.mnuPrincAbout.Name = "mnuPrincAbout"
-        Me.mnuPrincAbout.Size = New System.Drawing.Size(115, 22)
+        Me.mnuPrincAbout.Size = New System.Drawing.Size(116, 22)
         Me.mnuPrincAbout.Text = "&About..."
         '
         'dirWatcher
@@ -1110,14 +1110,14 @@ Partial Class frmPrincipal
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(1016, 653)
+        Me.ClientSize = New System.Drawing.Size(1132, 653)
         Me.Controls.Add(Me.mnuPrincipal)
         Me.Controls.Add(Me.splPrincipal)
         Me.Controls.Add(Me.staBar)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(1024, 680)
+        Me.MinimumSize = New System.Drawing.Size(1048, 680)
         Me.Name = "frmPrincipal"
         Me.Text = "ClockSkinMaker"
         CType(Me.txtCenterX, System.ComponentModel.ISupportInitialize).EndInit()
