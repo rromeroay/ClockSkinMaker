@@ -153,6 +153,16 @@ Public Class CSkinPanel
         Set(value As Integer)
             _centerX = value
             Me.Left = _centerX + 200 - Me.Width / 2
+
+            'exceptions in postion aligment
+            Select Case Me._tipo
+                Case TIPO_ELEMENTO.array_battery_level
+                    Select Case Me.Drawables.Count
+                        Case Is >= 12 'Remove the percent symbol ocuppation (_centerX + 200 - (Me.Width - System.Drawing.Image.FromFile(Drawables(11)).Size.Width) / 2)
+                            If IO.File.Exists(Drawables(11)) Then Me.Left += (System.Drawing.Image.FromFile(Drawables(11)).Size.Width / 2)
+                    End Select
+            End Select
+
             Me.Invalidate()
         End Set
     End Property
@@ -236,7 +246,6 @@ Public Class CSkinPanel
         Set(value As Integer)
             _width = value
 
-            Me._imagen.Width = _width
             MyBase.Width = _width
             Me.CenterX = _centerX
             Me.CenterY = _centerY
@@ -251,7 +260,6 @@ Public Class CSkinPanel
         Set(value As Integer)
             _height = value
 
-            Me._imagen.Height = _height
             MyBase.Height = _height
             Me.CenterX = _centerX
             Me.CenterY = _centerY
@@ -491,7 +499,6 @@ Public Class CSkinPanel
         Catch ex As Exception
             _imagen.Image = My.Resources.warning
             Me._loaded_size = _imagen.Size
-
             Me.Width = _loaded_size.Width 'Cada vez que se cambia el tamaño hay que calcular su centro
             Me.Height = _loaded_size.Height
 
@@ -625,88 +632,92 @@ Public Class CSkinPanel
     End Sub
 
     Private Sub LoadImage()
+        Dim tmp As Bitmap = Nothing
+
         Try
             If Not _imagen.Image Is Nothing Then _imagen.Image.Dispose() : _imagen.Image = Nothing
 
             Select Case _tipo
                 Case TIPO_ELEMENTO.image To TIPO_ELEMENTO.ROTATE_END - 1
                     If Me.Drawables.Count <> 1 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0)
+                    tmp = JoinImages(0)
                 Case TIPO_ELEMENTO.array_yearmonthday
                     If Me.Drawables.Count < 11 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0, 0, 0, 10, 0, 0, 10, 0, 0)
+                    tmp = JoinImages(0, 0, 0, 0, 10, 0, 0, 10, 0, 0)
                 Case TIPO_ELEMENTO.array_monthday
                     If Me.Drawables.Count < 11 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0, 10, 0, 0)
+                    tmp = JoinImages(0, 0, 10, 0, 0)
                 Case TIPO_ELEMENTO.array_month
                     If Me.Drawables.Count < 12 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0)
+                    tmp = JoinImages(0)
                 Case TIPO_ELEMENTO.array_day
                     If Me.Drawables.Count < 10 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0)
+                    tmp = JoinImages(0, 0)
                 Case TIPO_ELEMENTO.array_weekday
                     If Me.Drawables.Count < 7 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0)
+                    tmp = JoinImages(0)
                 Case TIPO_ELEMENTO.array_hourminute
                     Select Case Me.Drawables.Count
-                        Case Is >= 13 : _imagen.Image = JoinImages(0, 0, 10, 0, 0, 11)
-                        Case 11 : _imagen.Image = JoinImages(0, 0, 10, 0, 0)
+                        Case Is >= 13 : tmp = JoinImages(0, 0, 10, 0, 0, 11)
+                        Case 11 : tmp = JoinImages(0, 0, 10, 0, 0)
                         Case Else : Throw New Exception("Incorrect number of drawables.")
                     End Select
                 Case TIPO_ELEMENTO.array_hour
                     If Me.Drawables.Count < 10 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0)
+                    tmp = JoinImages(0, 0)
                 Case TIPO_ELEMENTO.array_minute
                     If Me.Drawables.Count < 10 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0)
+                    tmp = JoinImages(0, 0)
                 Case TIPO_ELEMENTO.array_second
                     If Me.Drawables.Count < 10 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0)
+                    tmp = JoinImages(0, 0)
                 Case TIPO_ELEMENTO.array_weather
                     If Me.Drawables.Count < 15 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0)
+                    tmp = JoinImages(0)
                 Case TIPO_ELEMENTO.array_temprature
                     If Me.Drawables.Count < 12 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0, 11)
+                    tmp = JoinImages(0, 0, 11)
                 Case TIPO_ELEMENTO.array_steps, TIPO_ELEMENTO.array_arc_steps
                     Select Case Me.Drawables.Count
-                        Case Is >= 11 : _imagen.Image = JoinImages(10, 10, 8, 0, 0)
-                        Case 10 : _imagen.Image = JoinImages(0, 0, 0, 0, 0)
+                        Case Is >= 11 : tmp = JoinImages(10, 10, 8, 0, 0)
+                        Case 10 : tmp = JoinImages(0, 0, 0, 0, 0)
                         Case Else : Throw New Exception("Incorrect number of drawables.")
                     End Select
                 Case TIPO_ELEMENTO.array_heartrate
                     If Me.Drawables.Count < 10 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0)
+                    tmp = JoinImages(0, 0)
                 Case TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.array_arc_battery
                     Select Case Me.Drawables.Count
-                        Case Is >= 12 : _imagen.Image = JoinImages(10, 0, 0, 11)
-                        Case Is >= 11 : _imagen.Image = JoinImages(10, 0, 0)
+                        Case Is >= 12 : tmp = JoinImages(10, 0, 0, 11)
+                        Case Is >= 11 : tmp = JoinImages(10, 0, 0)
                         Case Else : Throw New Exception("Incorrect number of drawables.")
                     End Select
                 Case TIPO_ELEMENTO.array_year
                     If Me.Drawables.Count < 10 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0, 0, 0, 0)
+                    tmp = JoinImages(0, 0, 0, 0)
                 Case TIPO_ELEMENTO.array_moon_phase
                     If Me.Drawables.Count < 8 Then Throw New Exception("Incorrect number of drawables.")
-                    _imagen.Image = JoinImages(0)
+                    tmp = JoinImages(0)
 
                 Case TIPO_ELEMENTO._array_pedometer_text : Throw New Exception("'Pedometer text' not implemented.")
                 Case TIPO_ELEMENTO._array_heartrate_text : Throw New Exception("'Heartrate text' not implemented.")
 
                 Case TIPO_ELEMENTO.array_charging_batt
                     Select Case ColorBat
-                        Case 1 : _imagen.Image = My.Resources.charging_battery_color1
-                        Case Else : _imagen.Image = My.Resources.charging_battery_color0
+                        Case 1 : tmp = My.Resources.charging_battery_color1
+                        Case Else : tmp = My.Resources.charging_battery_color0
                     End Select
 
                 Case TIPO_ELEMENTO.array_special_second
-                    _imagen.Image = My.Resources.clock_skin_special_seconds
+                    tmp = My.Resources.clock_skin_special_seconds
                 Case Else : Throw New Exception("Not implemented.")
             End Select
 
+            Me._imagen.Image = tmp
             Me._loaded_size = _imagen.Image.Size
-            Me.Width = _loaded_size.Width 'Cada vez que se cambia el tamaño hay que calcular su centro
-            Me.Height = _loaded_size.Height
+            Me.Width = Me._loaded_size.Width 'Cada vez que se cambia el tamaño hay que calcular su centro
+            Me.Height = Me._loaded_size.Height
+
         Catch ex As Exception
             Throw New Exception(ex.Message)
         End Try
@@ -714,7 +725,6 @@ Public Class CSkinPanel
     End Sub
     Private Function JoinImages(ParamArray indices() As Integer) As Bitmap
         Dim h_max As Integer = 0
-        Dim w_max As Integer = 0
         Dim w_total As Integer = 0
 
         'Calcular ancho final
@@ -724,17 +734,14 @@ Public Class CSkinPanel
             Using fs As New System.IO.FileStream(Drawables(indices(i)), IO.FileMode.Open, IO.FileAccess.Read)
                 Using b As Bitmap = System.Drawing.Image.FromStream(fs)
                     h_max = Math.Max(h_max, b.Height)
-                    w_max = Math.Max(w_max, b.Width)
                     w_total += b.Width
                 End Using
                 fs.Close()
             End Using
         Next
         If h_max = 0 Then h_max = 1
-        If w_max = 0 Then w_max = 1
         If w_total = 0 Then w_total = 1
 
-        'w_total = w_max * indices.Length
         Dim bmp As Bitmap = New Bitmap(w_total, h_max)
         Using g As Graphics = Graphics.FromImage(bmp)
             Dim w_ant As Integer = 0
@@ -744,7 +751,7 @@ Public Class CSkinPanel
 
                 Using fs As New System.IO.FileStream(Drawables(indices(i)), IO.FileMode.Open, IO.FileAccess.Read)
                     Using b As Bitmap = System.Drawing.Image.FromStream(fs)
-                        g.DrawImage(b, w_ant, 0, b.Width, b.Height) '(bmp.Height - b.Height) \ 2
+                        g.DrawImage(b, w_ant, 0, b.Width, h_max) ' b.Height) '(bmp.Height - b.Height) \ 2
                         w_ant += b.Width
                     End Using
                 End Using
@@ -754,6 +761,36 @@ Public Class CSkinPanel
         Return bmp
     End Function
 
+    Private Sub JoinImagesSample(ParamArray indices() As Integer)
+        Dim bmp As Bitmap = JoinImages(indices)
+
+        'if The original size has been changed
+        If Me.Size <> Me._loaded_size Then
+            Dim scale_w As Double = Me.Size.Width / Me._loaded_size.Width
+            Dim scale_h As Double = Me.Size.Height / Me._loaded_size.Height
+
+            bmp = New Bitmap(bmp, bmp.Width * scale_w, bmp.Height * scale_h)
+        End If
+
+        'should be calculate the position constantly
+        Dim _tmp_left As Integer = _centerX + 200 - bmp.Width / 2
+        Dim _tmp_top As Integer = _centerY + 200 - bmp.Height / 2
+
+        ''''exceptions in postion aligment
+        Select Case Me._tipo
+            Case TIPO_ELEMENTO.array_battery_level
+                Select Case Me.Drawables.Count
+                    Case Is >= 12 'Remove the percent symbol ocuppation ( _centerX + 200 - (bmp.Width - System.Drawing.Image.FromFile(Drawables(11)).Size.Width) / 2)
+                        If IO.File.Exists(Drawables(11)) Then _tmp_left += (System.Drawing.Image.FromFile(Drawables(11)).Size.Width / 2)
+                End Select
+        End Select
+
+        _imagen_sample = New Bitmap(400, 400)
+        Using g As Graphics = Graphics.FromImage(_imagen_sample)
+            g.DrawImage(bmp, _tmp_left, _tmp_top, bmp.Width, bmp.Height)
+        End Using
+        If Not bmp Is Nothing Then bmp.Dispose() : bmp = Nothing
+    End Sub
     'Private _ant_value As Double = Double.MinValue
     Private _imagen_sample As Bitmap = Nothing
     Public Function Sample(value As Double) As Bitmap
@@ -851,14 +888,20 @@ Public Class CSkinPanel
             Select Case _tipo 'ARRAYS
                 Case TIPO_ELEMENTO.ROTATE_END + 1 To TIPO_ELEMENTO.ARRAY_END - 1
                     Dim s As String = ""
-                    Dim tmp As Bitmap = Nothing
-
                     Select Case Me.Tipo
                         Case TIPO_ELEMENTO.array_charging_batt
+                            Dim tmp As Bitmap = Nothing
+
                             Select Case ColorBat
                                 Case 1 : tmp = My.Resources.charging_battery_color1
                                 Case Else : tmp = My.Resources.charging_battery_color0
                             End Select
+
+                            _imagen_sample = New Bitmap(400, 400)
+                            Using g As Graphics = Graphics.FromImage(_imagen_sample)
+                                g.DrawImage(tmp, Me.Left, Me.Top, Me.Width, Me.Height)
+                            End Using
+                            If Not tmp Is Nothing Then tmp.Dispose() : tmp = Nothing
 
                         Case TIPO_ELEMENTO.array_special_second
                             _imagen_sample = New Bitmap(400, 400)
@@ -881,47 +924,40 @@ Public Class CSkinPanel
                                     End Using
                                 Next
                             End Using
-                            Return _imagen_sample 'Finish..........
+
                         Case TIPO_ELEMENTO.array_day, TIPO_ELEMENTO.array_hour, TIPO_ELEMENTO.array_minute, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_heartrate
                             s = String.Format("{0:00}", value)
-                            tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)))
+                            JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)))
                         Case TIPO_ELEMENTO.array_hourminute
                             Select Case Me.Drawables.Count
                                 Case >= 13 : s = String.Format("{0:00}{1:00}", IIf(value.ToString("0000").Substring(0, 2) Mod 12 <> "00", value.ToString("0000").Substring(0, 2) Mod 12, "12"), value.ToString("0000").Substring(2)) 'ampm
                                 Case Else : s = String.Format("{0:0000}", value)
                             End Select
                             Select Case Me.Drawables.Count
-                                Case Is >= 13 : tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), 10, Integer.Parse(s(2)), Integer.Parse(s(3)), IIf(value < 1200, 11, 12)) 'ampm
-                                Case 11 : tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), 10, Integer.Parse(s(2)), Integer.Parse(s(3)))
+                                Case Is >= 13 : JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)), 10, Integer.Parse(s(2)), Integer.Parse(s(3)), IIf(value < 1200, 11, 12)) 'ampm
+                                Case 11 : JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)), 10, Integer.Parse(s(2)), Integer.Parse(s(3)))
                             End Select
                         Case TIPO_ELEMENTO.array_monthday
                             s = String.Format("{0:0000}", value)
-                            tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), 10, Integer.Parse(s(2)), Integer.Parse(s(3)))
+                            JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)), 10, Integer.Parse(s(2)), Integer.Parse(s(3)))
                         Case TIPO_ELEMENTO.array_yearmonthday
                             s = String.Format("{0:00000000}", value)
-                            tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), Integer.Parse(s(2)), Integer.Parse(s(3)), 10, Integer.Parse(s(4)), Integer.Parse(s(5)), 10, Integer.Parse(s(6)), Integer.Parse(s(7)))
+                            JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)), Integer.Parse(s(2)), Integer.Parse(s(3)), 10, Integer.Parse(s(4)), Integer.Parse(s(5)), 10, Integer.Parse(s(6)), Integer.Parse(s(7)))
                         Case TIPO_ELEMENTO.array_year
                             s = String.Format("{0:0000}", value)
-                            tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), Integer.Parse(s(2)), Integer.Parse(s(3)))
+                            JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)), Integer.Parse(s(2)), Integer.Parse(s(3)))
                         Case TIPO_ELEMENTO.array_steps, TIPO_ELEMENTO.array_arc_steps
                             s = String.Format("{0}", Integer.Parse(value)).PadLeft(5, " ") 'leading with spaces
 
                             Select Case Me.Drawables.Count
                                 Case Is >= 11 'Exists an image to lead zeros
-                                    tmp = JoinImages(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))), If(s(3) = " "c, 10, Integer.Parse(s(3))), If(s(4) = " "c, 10, Integer.Parse(s(4))))
+                                    JoinImagesSample(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))), If(s(3) = " "c, 10, Integer.Parse(s(3))), If(s(4) = " "c, 10, Integer.Parse(s(4))))
                                 Case 10
-                                    tmp = JoinImages(If(s(0) = " "c, 0, Integer.Parse(s(0))), If(s(1) = " "c, 0, Integer.Parse(s(1))), If(s(2) = " "c, 0, Integer.Parse(s(2))), If(s(3) = " "c, 0, Integer.Parse(s(3))), If(s(4) = " "c, 0, Integer.Parse(s(4))))
+                                    JoinImagesSample(If(s(0) = " "c, 0, Integer.Parse(s(0))), If(s(1) = " "c, 0, Integer.Parse(s(1))), If(s(2) = " "c, 0, Integer.Parse(s(2))), If(s(3) = " "c, 0, Integer.Parse(s(3))), If(s(4) = " "c, 0, Integer.Parse(s(4))))
                             End Select
 
                             '''''''''''''''''''''''''''''''PINTAR ARCO!
                             If Me.Tipo = TIPO_ELEMENTO.array_arc_steps Then
-                                _imagen_sample = New Bitmap(400, 400)
-
-                                Using g As Graphics = Graphics.FromImage(_imagen_sample)
-                                    g.DrawImage(tmp, Me.Left, Me.Top, Me.Width, Me.Height)
-                                End Using
-                                If Not tmp Is Nothing Then tmp.Dispose() : tmp = Nothing
-
                                 Using g As Graphics = Graphics.FromImage(_imagen_sample)
                                     'g.DrawArc(New Pen(Me.Color1, 7), New RectangleF(Me.CenterX + 200 - (Me.Width + 20) / 2, Me.CenterY + 200 - (Me.Width + 20) / 2, Me.Width + 20, Me.Width + 20), -90, 360)
                                     g.DrawArc(New Pen(Me.Color1, 7), New RectangleF(Me.CenterX + 200 - 53, Me.CenterY + 200 - 53, 53 * 2, 53 * 2), -90, 360)
@@ -931,43 +967,34 @@ Public Class CSkinPanel
                                     'g.DrawArc(New Pen(Me.Color2, 7), New RectangleF(Me.CenterX + 200 - (Me.Width + 20) / 2, Me.CenterY + 200 - (Me.Width + 20) / 2, Me.Width + 20, Me.Width + 20), -90, (360 / 7000) * (Math.Min(value, 7000 - 1) Mod 7000)) 'muestra cuanto falta para llegar a 7000 pasos recomendados
                                     g.DrawArc(New Pen(Me.Color2, 7), New RectangleF(Me.CenterX + 200 - 53, Me.CenterY + 200 - 53, 53 * 2, 53 * 2), -90, (360 / 7000) * (Math.Min(value, 7000 - 1) Mod 7000)) 'muestra cuanto falta para llegar a 7000 pasos recomendados
                                 End Using
-
-                                Return _imagen_sample 'Finish..........
                             End If
                         Case TIPO_ELEMENTO.array_month
-                            tmp = JoinImages((value - 1) Mod 12) '0..11
+                            JoinImagesSample((value - 1) Mod 12) '0..11
                         Case TIPO_ELEMENTO.array_weekday
-                            tmp = JoinImages(value Mod 7) '0..6
+                            JoinImagesSample(value Mod 7) '0..6
                         Case TIPO_ELEMENTO.array_weather
-                            tmp = JoinImages(value Mod 15)
+                            JoinImagesSample(value Mod 15)
                         Case TIPO_ELEMENTO.array_moon_phase
-                            tmp = JoinImages(value Mod 8)
+                            JoinImagesSample(value Mod 8)
                         Case TIPO_ELEMENTO.array_temprature
                             s = String.Format("{0:00}", value)
                             Select Case (s(0))
                                 Case "-"
-                                    tmp = JoinImages(10, Integer.Parse(s(1)), Integer.Parse(s(2)), 11)
+                                    JoinImagesSample(10, Integer.Parse(s(1)), Integer.Parse(s(2)), 11)
                                 Case Else
-                                    tmp = JoinImages(Integer.Parse(s(0)), Integer.Parse(s(1)), 11)
+                                    JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)), 11)
                             End Select
                         Case TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.array_arc_battery
                             s = String.Format("{0}", Integer.Parse(value)).PadLeft(3, " ") 'leading with spaces
                             Select Case Me.Drawables.Count
                                 Case Is >= 12 'Con %
-                                    tmp = JoinImages(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))), 11)
+                                    JoinImagesSample(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))), 11)
                                 Case Else
-                                    tmp = JoinImages(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))))
+                                    JoinImagesSample(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))))
                             End Select
 
                             '''''''''''''''''''''''''''''''PINTAR ARCO!
                             If Me.Tipo = TIPO_ELEMENTO.array_arc_battery Then
-                                _imagen_sample = New Bitmap(400, 400)
-
-                                Using g As Graphics = Graphics.FromImage(_imagen_sample)
-                                    g.DrawImage(tmp, Me.Left, Me.Top, Me.Width, Me.Height)
-                                End Using
-                                If Not tmp Is Nothing Then tmp.Dispose() : tmp = Nothing
-
                                 Using g As Graphics = Graphics.FromImage(_imagen_sample)
                                     For i As Integer = 0 To 20
                                         Using m As New Drawing2D.Matrix
@@ -989,18 +1016,9 @@ Public Class CSkinPanel
                                         End Using
                                     Next
                                 End Using
-
-                                Return _imagen_sample 'Finish..........
                             End If
                         Case Else : Throw New Exception("Sample array not implemented.")
                     End Select
-
-                    'rotate image any angles
-                    _imagen_sample = New Bitmap(400, 400)
-                    Using g As Graphics = Graphics.FromImage(_imagen_sample)
-                        g.DrawImage(tmp, Me.Left, Me.Top, Me.Width, Me.Height)
-                    End Using
-                    If Not tmp Is Nothing Then tmp.Dispose() : tmp = Nothing
 
                     Return _imagen_sample
             End Select
@@ -1009,8 +1027,6 @@ Public Class CSkinPanel
         Catch ex As Exception
             Throw New Exception(ex.Message)
         End Try
-
-        Me.Invalidate()
     End Function
 End Class
 
