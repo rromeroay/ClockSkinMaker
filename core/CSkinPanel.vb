@@ -778,6 +778,9 @@ Public Class CSkinPanel
 
         ''''exceptions in postion aligment
         Select Case Me._tipo
+            Case TIPO_ELEMENTO.array_hour, TIPO_ELEMENTO.array_minute, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_day, TIPO_ELEMENTO.array_heartrate     'align to left
+                _tmp_left = _centerX + 200
+                If IO.File.Exists(Drawables(indices(0))) Then _tmp_left -= System.Drawing.Image.FromFile(Drawables(indices(0))).Width
             Case TIPO_ELEMENTO.array_battery_level
                 Select Case Me.Drawables.Count
                     Case Is >= 12 'Remove the percent symbol ocuppation ( _centerX + 200 - (bmp.Width - System.Drawing.Image.FromFile(Drawables(11)).Size.Width) / 2)
