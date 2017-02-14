@@ -156,6 +156,9 @@ Public Class CSkinPanel
 
             'exceptions in postion aligment
             Select Case Me._tipo
+                Case TIPO_ELEMENTO.array_hour, TIPO_ELEMENTO.array_minute, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_day, TIPO_ELEMENTO.array_heartrate     'align to left
+                    Me.Left = _centerX + 200
+                    If IO.File.Exists(Drawables(0)) Then Me.Left -= System.Drawing.Image.FromFile(Drawables(0)).Width 'zero is de default value in loadpicture
                 Case TIPO_ELEMENTO.array_battery_level
                     Select Case Me.Drawables.Count
                         Case Is >= 12 'Remove the percent symbol ocuppation (_centerX + 200 - (Me.Width - System.Drawing.Image.FromFile(Drawables(11)).Size.Width) / 2)
@@ -679,7 +682,7 @@ Public Class CSkinPanel
                     tmp = JoinImages(0, 0, 11)
                 Case TIPO_ELEMENTO.array_steps, TIPO_ELEMENTO.array_arc_steps
                     Select Case Me.Drawables.Count
-                        Case Is >= 11 : tmp = JoinImages(10, 10, 8, 0, 0)
+                        Case Is >= 11 : tmp = JoinImages(10, 10, 0, 0, 0)
                         Case 10 : tmp = JoinImages(0, 0, 0, 0, 0)
                         Case Else : Throw New Exception("Incorrect number of drawables.")
                     End Select
@@ -1033,7 +1036,7 @@ Public Class CSkinPanel
     End Function
 End Class
 
-Class CPictureBoxTransparent
+Public Class CPictureBoxTransparent
     Inherits PictureBox
 
     Public Sub New()
