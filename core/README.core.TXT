@@ -19,9 +19,9 @@ KNOWN ISSUES AND LIMITATIONS
 
 CHANGELOG
 ==================================
-2017/02/11	1.3.0.0 - Implementing firmware behavior (rotate battery, array_second alignment, anticlokwise dependent on layers)
-					Thanks to "Andrew Somers" for collaborating in the tests.
-					Thanks to "Alessandro Limonta" provide solutions and fixes to issues. Special thanks for his to contribute in source code.
+2017/02/11  1.3.0.0 - Implementing firmware behavior (rotate battery, array_second alignment, anticlokwise dependent on layers)
+                    Thanks to "Andrew Somers" for collaborating in the tests.
+                    Thanks to "Alessandro Limonta" provide solutions and fixes to issues. Special thanks for his to contribute in source code.
 2016/11/12  1.2.0.0 - Implemented leading character functionality into "array_steps" (creation arrays and preview). 
                     Thanks to "Derk-Jan Woltjer" who has warned of this functionality and collaborated with tests.
                     - Prevent image filenames starting with dot.
