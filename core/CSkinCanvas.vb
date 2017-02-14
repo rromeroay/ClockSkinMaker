@@ -55,13 +55,13 @@ Public Class CSkinCanvas
         RaiseEvent OnMouseMove(Me, Me.MousePosition)
     End Sub
     Private Sub Sizer_MouseDown(sender As Object, e As MouseEventArgs) Handles Sizer.MouseDown
-        If SelectedElement Is Nothing Then Return
+        If SelectedElement Is Nothing OrElse _mode <> TIPO_MODO.EDIT Then Return
         bMoviendo = False
         bCambiandoTam = False
         MoveOffset = New Point(e.Location.X, e.Location.Y)
     End Sub
     Private Sub Sizer_MouseMove(sender As Object, e As MouseEventArgs) Handles Sizer.MouseMove
-        If SelectedElement Is Nothing Then Return
+        If SelectedElement Is Nothing OrElse _mode <> TIPO_MODO.EDIT Then Return
         Select Case e.Button
             Case MouseButtons.Left
                 bMoviendo = True
@@ -82,7 +82,7 @@ Public Class CSkinCanvas
         Me.Refresh()
     End Sub
     Private Sub Sizer_MouseUp(sender As Object, e As MouseEventArgs) Handles Sizer.MouseUp
-        If SelectedElement Is Nothing Then Return
+        If SelectedElement Is Nothing OrElse _mode <> TIPO_MODO.EDIT Then Return
         Select Case True
             Case bMoviendo, bCambiandoTam
                 RaiseEvent OnUpdatedElement(Me, SelectedElement)
@@ -92,7 +92,7 @@ Public Class CSkinCanvas
         End Select
     End Sub
     Private Sub Sizer_DoubleClick(sender As Object, e As EventArgs) Handles Sizer.DoubleClick
-        If SelectedElement Is Nothing Then Return
+        If SelectedElement Is Nothing OrElse _mode <> TIPO_MODO.EDIT Then Return
         RaiseEvent OnDoubleClickElement(Me, SelectedElement)
     End Sub
 
@@ -106,7 +106,7 @@ Public Class CSkinCanvas
         Set(value As TIPO_MODO)
             _mode = value
             Select Case _mode
-                Case TIPO_MODO.NOW, TIPO_MODO.TEST : _timer.Change(0, 50)
+                Case TIPO_MODO.NOW, TIPO_MODO.TEST : _timer.Change(0, 15)
                 Case Else : _timer.Change(Threading.Timeout.Infinite, Threading.Timeout.Infinite) : Me.Refresh()
             End Select
         End Set
@@ -120,8 +120,7 @@ Public Class CSkinCanvas
     Private Ready As Boolean = False
     Private IsPainting As Boolean = False
     Private Sub Window_Paint(sender As Object, e As System.Windows.Forms.PaintEventArgs) Handles Window.Paint
-        If Not Me.Ready Then Return
-        If Me.IsPainting Then Return
+        If Me.IsPainting OrElse Not Me.Ready Then Return
 
         Try
             Me.IsPainting = True
@@ -234,8 +233,7 @@ Public Class CSkinCanvas
     End Sub
 
     Public Sub Refresh()
-        If Not Me.Ready Then Return
-        If Me.IsPainting Then Return
+        If Me.IsPainting OrElse Not Me.Ready Then Return
         Me.Window.Invalidate()
     End Sub
 
