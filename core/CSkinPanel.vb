@@ -157,11 +157,14 @@ Public Class CSkinPanel
             'exceptions in postion aligment
             Select Case Me._tipo
                 Case TIPO_ELEMENTO.array_hour, TIPO_ELEMENTO.array_minute, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_day, TIPO_ELEMENTO.array_heartrate     'align to left
-                    Me.Left = _centerX + 200
-                    If IO.File.Exists(Drawables(0)) Then Me.Left -= System.Drawing.Image.FromFile(Drawables(0)).Width 'zero is de default value in loadpicture
+                    Select Case Me.Drawables.Count
+                        Case Is > 0
+                            Me.Left = _centerX + 200
+                            If IO.File.Exists(Drawables(0)) Then Me.Left -= System.Drawing.Image.FromFile(Drawables(0)).Width 'zero is de default value in loadpicture
+                    End Select
                 Case TIPO_ELEMENTO.array_battery_level
                     Select Case Me.Drawables.Count
-                        Case Is >= 12 'Remove the percent symbol ocuppation (_centerX + 200 - (Me.Width - System.Drawing.Image.FromFile(Drawables(11)).Size.Width) / 2)
+                        Case Is > 11 'Remove the percent symbol ocuppation (_centerX + 200 - (Me.Width - System.Drawing.Image.FromFile(Drawables(11)).Size.Width) / 2)
                             If IO.File.Exists(Drawables(11)) Then Me.Left += (System.Drawing.Image.FromFile(Drawables(11)).Size.Width / 2)
                     End Select
             End Select
@@ -661,7 +664,7 @@ Public Class CSkinPanel
                     tmp = JoinImages(0)
                 Case TIPO_ELEMENTO.array_hourminute
                     Select Case Me.Drawables.Count
-                        Case Is >= 13 : tmp = JoinImages(0, 0, 10, 0, 0, 11)
+                        Case Is > 12 : tmp = JoinImages(0, 0, 10, 0, 0, 11)
                         Case 11 : tmp = JoinImages(0, 0, 10, 0, 0)
                         Case Else : Throw New Exception("Incorrect number of drawables.")
                     End Select
@@ -682,7 +685,7 @@ Public Class CSkinPanel
                     tmp = JoinImages(0, 0, 11)
                 Case TIPO_ELEMENTO.array_steps, TIPO_ELEMENTO.array_arc_steps
                     Select Case Me.Drawables.Count
-                        Case Is >= 11 : tmp = JoinImages(10, 10, 0, 0, 0)
+                        Case Is > 10 : tmp = JoinImages(10, 10, 0, 0, 0)
                         Case 10 : tmp = JoinImages(0, 0, 0, 0, 0)
                         Case Else : Throw New Exception("Incorrect number of drawables.")
                     End Select
@@ -691,8 +694,8 @@ Public Class CSkinPanel
                     tmp = JoinImages(0, 0)
                 Case TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.array_arc_battery
                     Select Case Me.Drawables.Count
-                        Case Is >= 12 : tmp = JoinImages(10, 0, 0, 11)
-                        Case Is >= 11 : tmp = JoinImages(10, 0, 0)
+                        Case Is > 11 : tmp = JoinImages(10, 0, 0, 11)
+                        Case 11 : tmp = JoinImages(10, 0, 0)
                         Case Else : Throw New Exception("Incorrect number of drawables.")
                     End Select
                 Case TIPO_ELEMENTO.array_year
@@ -782,11 +785,14 @@ Public Class CSkinPanel
         ''''exceptions in postion aligment
         Select Case Me._tipo
             Case TIPO_ELEMENTO.array_hour, TIPO_ELEMENTO.array_minute, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_day, TIPO_ELEMENTO.array_heartrate     'align to left
-                _tmp_left = _centerX + 200
-                If IO.File.Exists(Drawables(indices(0))) Then _tmp_left -= System.Drawing.Image.FromFile(Drawables(indices(0))).Width
+                Select Case Me.Drawables.Count
+                    Case Is > 0
+                        _tmp_left = _centerX + 200
+                        If IO.File.Exists(Drawables(indices(0))) Then _tmp_left -= System.Drawing.Image.FromFile(Drawables(indices(0))).Width
+                End Select
             Case TIPO_ELEMENTO.array_battery_level
                 Select Case Me.Drawables.Count
-                    Case Is >= 12 'Remove the percent symbol ocuppation ( _centerX + 200 - (bmp.Width - System.Drawing.Image.FromFile(Drawables(11)).Size.Width) / 2)
+                    Case Is > 11 'Remove the percent symbol ocuppation ( _centerX + 200 - (bmp.Width - System.Drawing.Image.FromFile(Drawables(11)).Size.Width) / 2)
                         If IO.File.Exists(Drawables(11)) Then _tmp_left += (System.Drawing.Image.FromFile(Drawables(11)).Size.Width / 2)
                 End Select
         End Select
@@ -936,11 +942,11 @@ Public Class CSkinPanel
                             JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)))
                         Case TIPO_ELEMENTO.array_hourminute
                             Select Case Me.Drawables.Count
-                                Case >= 13 : s = String.Format("{0:00}{1:00}", IIf(value.ToString("0000").Substring(0, 2) Mod 12 <> "00", value.ToString("0000").Substring(0, 2) Mod 12, "12"), value.ToString("0000").Substring(2)) 'ampm
+                                Case > 12 : s = String.Format("{0:00}{1:00}", IIf(value.ToString("0000").Substring(0, 2) Mod 12 <> "00", value.ToString("0000").Substring(0, 2) Mod 12, "12"), value.ToString("0000").Substring(2)) 'ampm
                                 Case Else : s = String.Format("{0:0000}", value)
                             End Select
                             Select Case Me.Drawables.Count
-                                Case Is >= 13 : JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)), 10, Integer.Parse(s(2)), Integer.Parse(s(3)), IIf(value < 1200, 11, 12)) 'ampm
+                                Case Is > 12 : JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)), 10, Integer.Parse(s(2)), Integer.Parse(s(3)), If(value < 1200, 11, 12)) 'ampm
                                 Case 11 : JoinImagesSample(Integer.Parse(s(0)), Integer.Parse(s(1)), 10, Integer.Parse(s(2)), Integer.Parse(s(3)))
                             End Select
                         Case TIPO_ELEMENTO.array_monthday
@@ -956,7 +962,7 @@ Public Class CSkinPanel
                             s = String.Format("{0}", Integer.Parse(value)).PadLeft(5, " ") 'leading with spaces
 
                             Select Case Me.Drawables.Count
-                                Case Is >= 11 'Exists an image to lead zeros
+                                Case Is > 10 'Exists an image to lead zeros
                                     JoinImagesSample(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))), If(s(3) = " "c, 10, Integer.Parse(s(3))), If(s(4) = " "c, 10, Integer.Parse(s(4))))
                                 Case 10
                                     JoinImagesSample(If(s(0) = " "c, 0, Integer.Parse(s(0))), If(s(1) = " "c, 0, Integer.Parse(s(1))), If(s(2) = " "c, 0, Integer.Parse(s(2))), If(s(3) = " "c, 0, Integer.Parse(s(3))), If(s(4) = " "c, 0, Integer.Parse(s(4))))
@@ -993,7 +999,7 @@ Public Class CSkinPanel
                         Case TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.array_arc_battery
                             s = String.Format("{0}", Integer.Parse(value)).PadLeft(3, " ") 'leading with spaces
                             Select Case Me.Drawables.Count
-                                Case Is >= 12 'Con %
+                                Case Is > 11 'Con %
                                     JoinImagesSample(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))), 11)
                                 Case Else
                                     JoinImagesSample(If(s(0) = " "c, 10, Integer.Parse(s(0))), If(s(1) = " "c, 10, Integer.Parse(s(1))), If(s(2) = " "c, 10, Integer.Parse(s(2))))
