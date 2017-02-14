@@ -106,7 +106,7 @@ Public Class CSkinCanvas
         Set(value As TIPO_MODO)
             _mode = value
             Select Case _mode
-                Case TIPO_MODO.NOW, TIPO_MODO.TEST : _timer.Change(0, 50)
+                Case TIPO_MODO.NOW, TIPO_MODO.TEST : _timer.Change(0, 20)
                 Case Else : _timer.Change(Threading.Timeout.Infinite, Threading.Timeout.Infinite) : Me.Refresh()
             End Select
         End Set
