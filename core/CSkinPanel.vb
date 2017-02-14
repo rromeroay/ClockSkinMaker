@@ -1048,6 +1048,7 @@ Public Class CPictureBoxTransparent
     Public Sub New()
         MyBase.New()
 
+        Me.DoubleBuffered = True
         Me.BackColor = Color.Transparent
         Me.Padding = New Padding(0)
         Me.Margin = New Padding(0)
