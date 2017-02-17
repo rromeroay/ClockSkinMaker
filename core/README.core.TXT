@@ -19,6 +19,7 @@ KNOWN ISSUES AND LIMITATIONS
 
 CHANGELOG
 ==================================
+2017/02/17  1.3.1.0 - Save the model file png as img_clock_preview.png for kw88 
 2017/02/11  1.3.0.0 - Implementing firmware behavior (rotate battery, array_second alignment, anticlokwise dependent on layers)
                     Thanks to "Andrew Somers" for collaborating in the tests.
                     Thanks to "Alessandro Limonta" provide solutions and fixes to issues. Special thanks for his to contribute in source code.
