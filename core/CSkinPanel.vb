@@ -152,14 +152,14 @@ Public Class CSkinPanel
         End Get
         Set(value As Integer)
             _centerX = value
-            Me.Left = _centerX + 200 - Me.Width / 2
+            Me.Left = _centerX + _medx - Me.Width / 2
 
             'exceptions in postion aligment
             Select Case Me._tipo
                 Case TIPO_ELEMENTO.array_hour, TIPO_ELEMENTO.array_minute, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_day, TIPO_ELEMENTO.array_heartrate     'align to left
                     Select Case Me.Drawables.Count
                         Case Is > 0
-                            Me.Left = _centerX + 200
+                            Me.Left = _centerX + _medx
                             If IO.File.Exists(Drawables(0)) Then Me.Left -= System.Drawing.Image.FromFile(Drawables(0)).Width 'zero is de default value in loadpicture
                     End Select
                 Case TIPO_ELEMENTO.array_battery_level
@@ -178,7 +178,7 @@ Public Class CSkinPanel
         End Get
         Set(value As Integer)
             _centerY = value
-            Me.Top = _centerY + 200 - Me.Height / 2
+            Me.Top = _centerY + _medy - Me.Height / 2
             Me.Invalidate()
         End Set
     End Property
@@ -188,8 +188,8 @@ Public Class CSkinPanel
             Return MyBase.Location
         End Get
         Set(value As Point)
-            Me.CenterX = value.X - 200 + Me.Width / 2
-            Me.CenterY = value.Y - 200 + Me.Height / 2
+            Me.CenterX = value.X - _medx + Me.Width / 2
+            Me.CenterY = value.Y - _medy + Me.Height / 2
         End Set
     End Property
 
@@ -282,9 +282,13 @@ Public Class CSkinPanel
         End Set
     End Property
 
+    Private _medX As Integer = 200
+    Private _medY As Integer = 200
     Public Sub New(canvas As CSkinCanvas, tipo As TIPO_ELEMENTO)
         Me.SkinCanvas = canvas
         Me._tipo = tipo
+        Me._medx = SkinCanvas.Width / 2
+        Me._medy = SkinCanvas.Height / 2
 
         Me.DoubleBuffered = True
         Me.Capture = True
@@ -779,15 +783,15 @@ Public Class CSkinPanel
         End If
 
         'should be calculate the position constantly
-        Dim _tmp_left As Integer = _centerX + 200 - bmp.Width / 2
-        Dim _tmp_top As Integer = _centerY + 200 - bmp.Height / 2
+        Dim _tmp_left As Integer = _centerX + _medx - bmp.Width / 2
+        Dim _tmp_top As Integer = _centerY + _medy - bmp.Height / 2
 
         ''''exceptions in postion aligment
         Select Case Me._tipo
             Case TIPO_ELEMENTO.array_hour, TIPO_ELEMENTO.array_minute, TIPO_ELEMENTO.array_second, TIPO_ELEMENTO.array_day, TIPO_ELEMENTO.array_heartrate     'align to left
                 Select Case Me.Drawables.Count
                     Case Is > 0
-                        _tmp_left = _centerX + 200
+                        _tmp_left = _centerX + _medx
                         If IO.File.Exists(Drawables(indices(0))) Then _tmp_left -= System.Drawing.Image.FromFile(Drawables(indices(0))).Width
                 End Select
             Case TIPO_ELEMENTO.array_battery_level
@@ -797,7 +801,7 @@ Public Class CSkinPanel
                 End Select
         End Select
 
-        _imagen_sample = New Bitmap(400, 400)
+        _imagen_sample = New Bitmap(SkinCanvas.Width, SkinCanvas.Height)
         Using g As Graphics = Graphics.FromImage(_imagen_sample)
             g.DrawImage(bmp, _tmp_left, _tmp_top, bmp.Width, bmp.Height)
         End Using
@@ -814,7 +818,7 @@ Public Class CSkinPanel
             If Not _imagen_sample Is Nothing Then _imagen_sample.Dispose() : _imagen_sample = Nothing
 
             If Me.Status <> ESTADO_ELEMENTO.LOADED Then
-                _imagen_sample = New Bitmap(400, 400)
+                _imagen_sample = New Bitmap(SkinCanvas.Width, SkinCanvas.Height)
                 Return _imagen_sample
             End If
 
@@ -885,10 +889,10 @@ Public Class CSkinPanel
                     ang += Me.Angle    'Angulo inicial
 
                     'rotate image any angles
-                    _imagen_sample = New Bitmap(400, 400)
+                    _imagen_sample = New Bitmap(SkinCanvas.Width, SkinCanvas.Height)
                     Using g As Graphics = Graphics.FromImage(_imagen_sample)
                         Using m As New Drawing2D.Matrix
-                            m.RotateAt(ang, New Point(Me.CenterX + 200, Me.CenterY + 200))
+                            m.RotateAt(ang, New Point(Me.CenterX + _medx, Me.CenterY + _medy))
                             g.Transform = m
                             g.DrawImage(Me.Imagen, Me.Left, Me.Top, Me.Width, Me.Height)
                         End Using
@@ -909,20 +913,20 @@ Public Class CSkinPanel
                                 Case Else : tmp = My.Resources.charging_battery_color0
                             End Select
 
-                            _imagen_sample = New Bitmap(400, 400)
+                            _imagen_sample = New Bitmap(SkinCanvas.Width, SkinCanvas.Height)
                             Using g As Graphics = Graphics.FromImage(_imagen_sample)
                                 g.DrawImage(tmp, Me.Left, Me.Top, Me.Width, Me.Height)
                             End Using
                             If Not tmp Is Nothing Then tmp.Dispose() : tmp = Nothing
 
                         Case TIPO_ELEMENTO.array_special_second
-                            _imagen_sample = New Bitmap(400, 400)
+                            _imagen_sample = New Bitmap(SkinCanvas.Width, SkinCanvas.Height)
                             Using g As Graphics = Graphics.FromImage(_imagen_sample)
                                 For i As Integer = 0 To 60  '6 grados tiene un segundo
                                     Using m As New Drawing2D.Matrix
-                                        m.RotateAt(i * 6, New Point(Me.CenterX + 200, Me.CenterY + 200))
+                                        m.RotateAt(i * 6, New Point(Me.CenterX + _medx, Me.CenterY + _medy))
                                         g.Transform = m
-                                        g.DrawLine(New Pen(Me.Color2, 12), New Point(Me.CenterX + 200, Me.CenterY + 5), New Point(Me.CenterX + 200, Me.CenterY + 20)) 'linea 12 de ancho y 7 de largo
+                                        g.DrawLine(New Pen(Me.Color2, 12), New Point(Me.CenterX + _medx, Me.CenterY + 5), New Point(Me.CenterX + _medx, Me.CenterY + 20)) 'linea 12 de ancho y 7 de largo
                                     End Using
                                 Next
                             End Using
@@ -930,9 +934,9 @@ Public Class CSkinPanel
                             Using g As Graphics = Graphics.FromImage(_imagen_sample)
                                 For i As Integer = 0 To (value Mod 60)
                                     Using m As New Drawing2D.Matrix
-                                        m.RotateAt(i * 6, New Point(Me.CenterX + 200, Me.CenterY + 200))
+                                        m.RotateAt(i * 6, New Point(Me.CenterX + _medx, Me.CenterY + _medy))
                                         g.Transform = m
-                                        g.DrawLine(New Pen(Me.Color1, 12), New Point(Me.CenterX + 200, Me.CenterY + 5), New Point(Me.CenterX + 200, Me.CenterY + 20)) 'linea 12 de ancho y 7 de largo
+                                        g.DrawLine(New Pen(Me.Color1, 12), New Point(Me.CenterX + _medx, Me.CenterY + 5), New Point(Me.CenterX + _medx, Me.CenterY + 20)) 'linea 12 de ancho y 7 de largo
                                     End Using
                                 Next
                             End Using
@@ -972,12 +976,12 @@ Public Class CSkinPanel
                             If Me.Tipo = TIPO_ELEMENTO.array_arc_steps Then
                                 Using g As Graphics = Graphics.FromImage(_imagen_sample)
                                     'g.DrawArc(New Pen(Me.Color1, 7), New RectangleF(Me.CenterX + 200 - (Me.Width + 20) / 2, Me.CenterY + 200 - (Me.Width + 20) / 2, Me.Width + 20, Me.Width + 20), -90, 360)
-                                    g.DrawArc(New Pen(Me.Color1, 7), New RectangleF(Me.CenterX + 200 - 53, Me.CenterY + 200 - 53, 53 * 2, 53 * 2), -90, 360)
+                                    g.DrawArc(New Pen(Me.Color1, 7), New RectangleF(Me.CenterX + _medx - 53, Me.CenterY + _medy - 53, 53 * 2, 53 * 2), -90, 360)
                                 End Using
 
                                 Using g As Graphics = Graphics.FromImage(_imagen_sample)
                                     'g.DrawArc(New Pen(Me.Color2, 7), New RectangleF(Me.CenterX + 200 - (Me.Width + 20) / 2, Me.CenterY + 200 - (Me.Width + 20) / 2, Me.Width + 20, Me.Width + 20), -90, (360 / 7000) * (Math.Min(value, 7000 - 1) Mod 7000)) 'muestra cuanto falta para llegar a 7000 pasos recomendados
-                                    g.DrawArc(New Pen(Me.Color2, 7), New RectangleF(Me.CenterX + 200 - 53, Me.CenterY + 200 - 53, 53 * 2, 53 * 2), -90, (360 / 7000) * (Math.Min(value, 7000 - 1) Mod 7000)) 'muestra cuanto falta para llegar a 7000 pasos recomendados
+                                    g.DrawArc(New Pen(Me.Color2, 7), New RectangleF(Me.CenterX + _medx - 53, Me.CenterY + _medy - 53, 53 * 2, 53 * 2), -90, (360 / 7000) * (Math.Min(value, 7000 - 1) Mod 7000)) 'muestra cuanto falta para llegar a 7000 pasos recomendados
                                 End Using
                             End If
                         Case TIPO_ELEMENTO.array_month
@@ -1010,10 +1014,10 @@ Public Class CSkinPanel
                                 Using g As Graphics = Graphics.FromImage(_imagen_sample)
                                     For i As Integer = 0 To 20
                                         Using m As New Drawing2D.Matrix
-                                            m.RotateAt(i * 18, New Point(Me.CenterX + 200, Me.CenterY + 200))
+                                            m.RotateAt(i * 18, New Point(Me.CenterX + _medx, Me.CenterY + _medy))
                                             g.Transform = m
-                                            'g.DrawLine(New Pen(Me.Color1, 4), New Point(Me.CenterX + 200, Me.CenterY + 200 - (Me.Width / 2) - 16), New Point(Me.CenterX + 200, Me.CenterY + 200 - (Me.Width / 2) - 25)) '4 de ancho, 10 de largo 
-                                            g.DrawLine(New Pen(Me.Color1, 4), New Point(Me.CenterX + 200, Me.CenterY + 200 - 50), New Point(Me.CenterX + 200, Me.CenterY + 200 - 57)) '4 de ancho, 7 de largo
+                                            'g.DrawLine(New Pen(Me.Color1, 4), New Point(Me.CenterX + 200, Me.CenterY + 200 - (Me.Width / 2) - 16), New Point(Me.CenterX +_medX, Me.CenterY + 200 - (Me.Width / 2) - 25)) '4 de ancho, 10 de largo 
+                                            g.DrawLine(New Pen(Me.Color1, 4), New Point(Me.CenterX + _medx, Me.CenterY + _medy - 50), New Point(Me.CenterX + _medx, Me.CenterY + _medy - 57)) '4 de ancho, 7 de largo
                                         End Using
                                     Next
                                 End Using
@@ -1021,10 +1025,10 @@ Public Class CSkinPanel
                                 Using g As Graphics = Graphics.FromImage(_imagen_sample)
                                     For i As Integer = 1 To (value * 20 / 100)
                                         Using m As New Drawing2D.Matrix
-                                            m.RotateAt(i * 18, New Point(Me.CenterX + 200, Me.CenterY + 200))
+                                            m.RotateAt(i * 18, New Point(Me.CenterX + _medx, Me.CenterY + _medy))
                                             g.Transform = m
                                             'g.DrawLine(New Pen(Me.Color2, 4), New Point(Me.CenterX + 200, Me.CenterY + 200 - (Me.Width / 2) - 15), New Point(Me.CenterX + 200, Me.CenterY + 200 - (Me.Width / 2) - 25)) '4 de ancho, 10 de largo 
-                                            g.DrawLine(New Pen(Me.Color2, 4), New Point(Me.CenterX + 200, Me.CenterY + 200 - 50), New Point(Me.CenterX + 200, Me.CenterY + 200 - 57)) '4 de ancho, 7 de largo
+                                            g.DrawLine(New Pen(Me.Color2, 4), New Point(Me.CenterX + _medx, Me.CenterY + _medy - 50), New Point(Me.CenterX + _medx, Me.CenterY + _medy - 57)) '4 de ancho, 7 de largo
                                         End Using
                                     Next
                                 End Using

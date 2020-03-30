@@ -70,7 +70,10 @@ Partial Class frmPrincipal
         Me.cmdNewSkin = New System.Windows.Forms.ToolStripButton()
         Me.cmdImport = New System.Windows.Forms.ToolStripButton()
         Me.grpMode = New System.Windows.Forms.GroupBox()
+        Me.optModeTest = New System.Windows.Forms.RadioButton()
+        Me.optModeEdit = New System.Windows.Forms.RadioButton()
         Me.lblSteps = New System.Windows.Forms.Label()
+        Me.chkNow = New System.Windows.Forms.CheckBox()
         Me.lblHeart = New System.Windows.Forms.Label()
         Me.lblMoon = New System.Windows.Forms.Label()
         Me.lblTemperature = New System.Windows.Forms.Label()
@@ -92,13 +95,12 @@ Partial Class frmPrincipal
         Me.txtMinutes = New System.Windows.Forms.NumericUpDown()
         Me.txtHour = New System.Windows.Forms.NumericUpDown()
         Me.grpToolBox = New System.Windows.Forms.GroupBox()
-        Me.chkNow = New System.Windows.Forms.CheckBox()
-        Me.optModeTest = New System.Windows.Forms.RadioButton()
-        Me.optModeEdit = New System.Windows.Forms.RadioButton()
         Me.pnlToolBox = New System.Windows.Forms.Panel()
         Me.toolToolBox = New System.Windows.Forms.ToolStrip()
         Me.cmdSave = New System.Windows.Forms.ToolStripButton()
         Me.txtName = New System.Windows.Forms.ToolStripTextBox()
+        Me.sep1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.cmbResolution = New System.Windows.Forms.ToolStripComboBox()
         Me.cmdLoad = New System.Windows.Forms.ToolStripButton()
         Me.cmdXml = New System.Windows.Forms.ToolStripButton()
         Me.cmdFileExplorer = New System.Windows.Forms.ToolStripButton()
@@ -196,7 +198,7 @@ Partial Class frmPrincipal
         Me.lstToolBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lstToolBox.Location = New System.Drawing.Point(1, 13)
         Me.lstToolBox.Name = "lstToolBox"
-        Me.lstToolBox.Size = New System.Drawing.Size(126, 450)
+        Me.lstToolBox.Size = New System.Drawing.Size(129, 460)
         Me.lstToolBox.TabIndex = 0
         '
         'cmdDel
@@ -206,7 +208,7 @@ Partial Class frmPrincipal
         Me.cmdDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdDel.FlatAppearance.BorderSize = 0
         Me.cmdDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdDel.Location = New System.Drawing.Point(349, 38)
+        Me.cmdDel.Location = New System.Drawing.Point(281, 38)
         Me.cmdDel.Name = "cmdDel"
         Me.cmdDel.Size = New System.Drawing.Size(20, 20)
         Me.cmdDel.TabIndex = 1
@@ -221,18 +223,17 @@ Partial Class frmPrincipal
         '
         'grpCanvas
         '
-        Me.grpCanvas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.grpCanvas.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpCanvas.Controls.Add(Me.lvwCanvas)
         Me.grpCanvas.Controls.Add(Me.cmdDel)
         Me.grpCanvas.Controls.Add(Me.cmdUp)
         Me.grpCanvas.Controls.Add(Me.cmdDown)
-        Me.grpCanvas.Location = New System.Drawing.Point(545, 50)
+        Me.grpCanvas.Location = New System.Drawing.Point(543, 50)
         Me.grpCanvas.Margin = New System.Windows.Forms.Padding(0)
         Me.grpCanvas.Name = "grpCanvas"
         Me.grpCanvas.Padding = New System.Windows.Forms.Padding(1, 0, 0, 1)
-        Me.grpCanvas.Size = New System.Drawing.Size(372, 350)
+        Me.grpCanvas.Size = New System.Drawing.Size(304, 362)
         Me.grpCanvas.TabIndex = 0
         Me.grpCanvas.TabStop = False
         Me.grpCanvas.Text = "Layers"
@@ -253,7 +254,7 @@ Partial Class frmPrincipal
         Me.lvwCanvas.Name = "lvwCanvas"
         Me.lvwCanvas.ShowGroups = False
         Me.lvwCanvas.ShowItemToolTips = True
-        Me.lvwCanvas.Size = New System.Drawing.Size(339, 335)
+        Me.lvwCanvas.Size = New System.Drawing.Size(271, 344)
         Me.lvwCanvas.SmallImageList = Me.imgCanvas
         Me.lvwCanvas.TabIndex = 0
         Me.lvwCanvas.UseCompatibleStateImageBehavior = False
@@ -283,7 +284,7 @@ Partial Class frmPrincipal
         Me.cmdUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdUp.FlatAppearance.BorderSize = 0
         Me.cmdUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdUp.Location = New System.Drawing.Point(349, 300)
+        Me.cmdUp.Location = New System.Drawing.Point(281, 291)
         Me.cmdUp.Name = "cmdUp"
         Me.cmdUp.Size = New System.Drawing.Size(20, 20)
         Me.cmdUp.TabIndex = 2
@@ -296,7 +297,7 @@ Partial Class frmPrincipal
         Me.cmdDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdDown.FlatAppearance.BorderSize = 0
         Me.cmdDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdDown.Location = New System.Drawing.Point(349, 326)
+        Me.cmdDown.Location = New System.Drawing.Point(281, 317)
         Me.cmdDown.Name = "cmdDown"
         Me.cmdDown.Size = New System.Drawing.Size(20, 20)
         Me.cmdDown.TabIndex = 3
@@ -304,8 +305,7 @@ Partial Class frmPrincipal
         '
         'grpProps
         '
-        Me.grpProps.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpProps.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpProps.Controls.Add(Me.cmdArray)
         Me.grpProps.Controls.Add(Me.lblFile)
         Me.grpProps.Controls.Add(Me.lblColorArray)
@@ -329,10 +329,10 @@ Partial Class frmPrincipal
         Me.grpProps.Controls.Add(Me.cmdColor2)
         Me.grpProps.Controls.Add(Me.cmdColor1)
         Me.grpProps.Controls.Add(Me.lblComma)
-        Me.grpProps.Location = New System.Drawing.Point(545, 400)
+        Me.grpProps.Location = New System.Drawing.Point(543, 412)
         Me.grpProps.Margin = New System.Windows.Forms.Padding(0)
         Me.grpProps.Name = "grpProps"
-        Me.grpProps.Size = New System.Drawing.Size(372, 198)
+        Me.grpProps.Size = New System.Drawing.Size(304, 196)
         Me.grpProps.TabIndex = 1
         Me.grpProps.TabStop = False
         Me.grpProps.Text = "Properties"
@@ -546,14 +546,11 @@ Partial Class frmPrincipal
         Me.splPrincipal.Panel2.Controls.Add(Me.grpCanvas)
         Me.splPrincipal.Panel2.Controls.Add(Me.grpMode)
         Me.splPrincipal.Panel2.Controls.Add(Me.grpToolBox)
-        Me.splPrincipal.Panel2.Controls.Add(Me.chkNow)
-        Me.splPrincipal.Panel2.Controls.Add(Me.optModeTest)
-        Me.splPrincipal.Panel2.Controls.Add(Me.optModeEdit)
         Me.splPrincipal.Panel2.Controls.Add(Me.pnlToolBox)
         Me.splPrincipal.Panel2.Controls.Add(Me.picPrevio)
         Me.splPrincipal.Panel2.Controls.Add(Me.pnlCanvas)
         Me.splPrincipal.Panel2MinSize = 800
-        Me.splPrincipal.Size = New System.Drawing.Size(1124, 601)
+        Me.splPrincipal.Size = New System.Drawing.Size(1054, 611)
         Me.splPrincipal.SplitterDistance = 200
         Me.splPrincipal.TabIndex = 1
         Me.splPrincipal.TabStop = False
@@ -570,7 +567,7 @@ Partial Class frmPrincipal
         Me.tblExplorer.RowCount = 2
         Me.tblExplorer.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
         Me.tblExplorer.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblExplorer.Size = New System.Drawing.Size(200, 601)
+        Me.tblExplorer.Size = New System.Drawing.Size(200, 611)
         Me.tblExplorer.TabIndex = 0
         '
         'lvwExplorer
@@ -588,7 +585,7 @@ Partial Class frmPrincipal
         Me.lvwExplorer.Name = "lvwExplorer"
         Me.lvwExplorer.ShowGroups = False
         Me.lvwExplorer.ShowItemToolTips = True
-        Me.lvwExplorer.Size = New System.Drawing.Size(194, 563)
+        Me.lvwExplorer.Size = New System.Drawing.Size(194, 573)
         Me.lvwExplorer.TabIndex = 1
         Me.lvwExplorer.UseCompatibleStateImageBehavior = False
         Me.lvwExplorer.View = System.Windows.Forms.View.Details
@@ -651,7 +648,12 @@ Partial Class frmPrincipal
         '
         'grpMode
         '
+        Me.grpMode.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpMode.Controls.Add(Me.optModeTest)
+        Me.grpMode.Controls.Add(Me.optModeEdit)
         Me.grpMode.Controls.Add(Me.lblSteps)
+        Me.grpMode.Controls.Add(Me.chkNow)
         Me.grpMode.Controls.Add(Me.lblHeart)
         Me.grpMode.Controls.Add(Me.lblMoon)
         Me.grpMode.Controls.Add(Me.lblTemperature)
@@ -672,28 +674,65 @@ Partial Class frmPrincipal
         Me.grpMode.Controls.Add(Me.txtSeconds)
         Me.grpMode.Controls.Add(Me.txtMinutes)
         Me.grpMode.Controls.Add(Me.txtHour)
-        Me.grpMode.Location = New System.Drawing.Point(139, 467)
+        Me.grpMode.Location = New System.Drawing.Point(139, 450)
         Me.grpMode.Margin = New System.Windows.Forms.Padding(0)
         Me.grpMode.Name = "grpMode"
         Me.grpMode.Padding = New System.Windows.Forms.Padding(0)
-        Me.grpMode.Size = New System.Drawing.Size(400, 122)
+        Me.grpMode.Size = New System.Drawing.Size(400, 158)
         Me.grpMode.TabIndex = 5
         Me.grpMode.TabStop = False
-        Me.grpMode.Visible = False
+        '
+        'optModeTest
+        '
+        Me.optModeTest.AutoSize = True
+        Me.optModeTest.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.optModeTest.Location = New System.Drawing.Point(59, 11)
+        Me.optModeTest.Name = "optModeTest"
+        Me.optModeTest.Size = New System.Drawing.Size(265, 17)
+        Me.optModeTest.TabIndex = 3
+        Me.optModeTest.Text = "Simulation (can differ from real engine)"
+        Me.optModeTest.UseVisualStyleBackColor = True
+        '
+        'optModeEdit
+        '
+        Me.optModeEdit.AutoSize = True
+        Me.optModeEdit.Checked = True
+        Me.optModeEdit.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.optModeEdit.Location = New System.Drawing.Point(6, 11)
+        Me.optModeEdit.Name = "optModeEdit"
+        Me.optModeEdit.Size = New System.Drawing.Size(49, 17)
+        Me.optModeEdit.TabIndex = 2
+        Me.optModeEdit.TabStop = True
+        Me.optModeEdit.Text = "Edit"
+        Me.optModeEdit.UseVisualStyleBackColor = True
         '
         'lblSteps
         '
         Me.lblSteps.AutoSize = True
-        Me.lblSteps.Location = New System.Drawing.Point(131, 102)
+        Me.lblSteps.Location = New System.Drawing.Point(131, 132)
         Me.lblSteps.Name = "lblSteps"
         Me.lblSteps.Size = New System.Drawing.Size(37, 13)
         Me.lblSteps.TabIndex = 19
         Me.lblSteps.Text = "Steps"
         '
+        'chkNow
+        '
+        Me.chkNow.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkNow.AutoSize = True
+        Me.chkNow.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkNow.Enabled = False
+        Me.chkNow.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkNow.Location = New System.Drawing.Point(353, 12)
+        Me.chkNow.Name = "chkNow"
+        Me.chkNow.Size = New System.Drawing.Size(44, 17)
+        Me.chkNow.TabIndex = 4
+        Me.chkNow.Text = "Now"
+        Me.chkNow.UseVisualStyleBackColor = True
+        '
         'lblHeart
         '
         Me.lblHeart.AutoSize = True
-        Me.lblHeart.Location = New System.Drawing.Point(31, 102)
+        Me.lblHeart.Location = New System.Drawing.Point(31, 132)
         Me.lblHeart.Name = "lblHeart"
         Me.lblHeart.Size = New System.Drawing.Size(43, 13)
         Me.lblHeart.TabIndex = 17
@@ -702,7 +741,7 @@ Partial Class frmPrincipal
         'lblMoon
         '
         Me.lblMoon.AutoSize = True
-        Me.lblMoon.Location = New System.Drawing.Point(255, 80)
+        Me.lblMoon.Location = New System.Drawing.Point(255, 109)
         Me.lblMoon.Name = "lblMoon"
         Me.lblMoon.Size = New System.Drawing.Size(31, 13)
         Me.lblMoon.TabIndex = 15
@@ -711,7 +750,7 @@ Partial Class frmPrincipal
         'lblTemperature
         '
         Me.lblTemperature.AutoSize = True
-        Me.lblTemperature.Location = New System.Drawing.Point(1, 80)
+        Me.lblTemperature.Location = New System.Drawing.Point(1, 110)
         Me.lblTemperature.Name = "lblTemperature"
         Me.lblTemperature.Size = New System.Drawing.Size(73, 13)
         Me.lblTemperature.TabIndex = 12
@@ -720,7 +759,7 @@ Partial Class frmPrincipal
         'lblBatt
         '
         Me.lblBatt.AutoSize = True
-        Me.lblBatt.Location = New System.Drawing.Point(25, 58)
+        Me.lblBatt.Location = New System.Drawing.Point(25, 88)
         Me.lblBatt.Name = "lblBatt"
         Me.lblBatt.Size = New System.Drawing.Size(49, 13)
         Me.lblBatt.TabIndex = 10
@@ -730,7 +769,7 @@ Partial Class frmPrincipal
         '
         Me.txtSteps.Enabled = False
         Me.txtSteps.Increment = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.txtSteps.Location = New System.Drawing.Point(174, 98)
+        Me.txtSteps.Location = New System.Drawing.Point(174, 128)
         Me.txtSteps.Maximum = New Decimal(New Integer() {99999, 0, 0, 0})
         Me.txtSteps.Name = "txtSteps"
         Me.txtSteps.Size = New System.Drawing.Size(60, 20)
@@ -742,7 +781,7 @@ Partial Class frmPrincipal
         Me.cmbMoon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbMoon.Enabled = False
         Me.cmbMoon.FormattingEnabled = True
-        Me.cmbMoon.Location = New System.Drawing.Point(289, 76)
+        Me.cmbMoon.Location = New System.Drawing.Point(289, 106)
         Me.cmbMoon.Name = "cmbMoon"
         Me.cmbMoon.Size = New System.Drawing.Size(103, 21)
         Me.cmbMoon.TabIndex = 16
@@ -750,7 +789,7 @@ Partial Class frmPrincipal
         'txtTemperature
         '
         Me.txtTemperature.Enabled = False
-        Me.txtTemperature.Location = New System.Drawing.Point(77, 76)
+        Me.txtTemperature.Location = New System.Drawing.Point(77, 106)
         Me.txtTemperature.Maximum = New Decimal(New Integer() {99, 0, 0, 0})
         Me.txtTemperature.Minimum = New Decimal(New Integer() {99, 0, 0, -2147483648})
         Me.txtTemperature.Name = "txtTemperature"
@@ -761,7 +800,7 @@ Partial Class frmPrincipal
         'txtHeart
         '
         Me.txtHeart.Enabled = False
-        Me.txtHeart.Location = New System.Drawing.Point(77, 98)
+        Me.txtHeart.Location = New System.Drawing.Point(77, 128)
         Me.txtHeart.Maximum = New Decimal(New Integer() {99, 0, 0, 0})
         Me.txtHeart.Name = "txtHeart"
         Me.txtHeart.Size = New System.Drawing.Size(48, 20)
@@ -773,7 +812,7 @@ Partial Class frmPrincipal
         Me.cmbWeather.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbWeather.Enabled = False
         Me.cmbWeather.FormattingEnabled = True
-        Me.cmbWeather.Location = New System.Drawing.Point(131, 76)
+        Me.cmbWeather.Location = New System.Drawing.Point(131, 106)
         Me.cmbWeather.Name = "cmbWeather"
         Me.cmbWeather.Size = New System.Drawing.Size(103, 21)
         Me.cmbWeather.TabIndex = 14
@@ -782,7 +821,7 @@ Partial Class frmPrincipal
         '
         Me.txtBatt.Enabled = False
         Me.txtBatt.Increment = New Decimal(New Integer() {5, 0, 0, 0})
-        Me.txtBatt.Location = New System.Drawing.Point(77, 54)
+        Me.txtBatt.Location = New System.Drawing.Point(77, 84)
         Me.txtBatt.Name = "txtBatt"
         Me.txtBatt.Size = New System.Drawing.Size(48, 20)
         Me.txtBatt.TabIndex = 11
@@ -791,7 +830,7 @@ Partial Class frmPrincipal
         'lblWeekday
         '
         Me.lblWeekday.AutoSize = True
-        Me.lblWeekday.Location = New System.Drawing.Point(237, 34)
+        Me.lblWeekday.Location = New System.Drawing.Point(237, 64)
         Me.lblWeekday.Name = "lblWeekday"
         Me.lblWeekday.Size = New System.Drawing.Size(49, 13)
         Me.lblWeekday.TabIndex = 8
@@ -800,7 +839,7 @@ Partial Class frmPrincipal
         'lblDate
         '
         Me.lblDate.AutoSize = True
-        Me.lblDate.Location = New System.Drawing.Point(7, 36)
+        Me.lblDate.Location = New System.Drawing.Point(7, 66)
         Me.lblDate.Name = "lblDate"
         Me.lblDate.Size = New System.Drawing.Size(67, 13)
         Me.lblDate.TabIndex = 4
@@ -809,7 +848,7 @@ Partial Class frmPrincipal
         'lblTime
         '
         Me.lblTime.AutoSize = True
-        Me.lblTime.Location = New System.Drawing.Point(19, 14)
+        Me.lblTime.Location = New System.Drawing.Point(19, 44)
         Me.lblTime.Name = "lblTime"
         Me.lblTime.Size = New System.Drawing.Size(55, 13)
         Me.lblTime.TabIndex = 0
@@ -818,7 +857,7 @@ Partial Class frmPrincipal
         'txtYear
         '
         Me.txtYear.Enabled = False
-        Me.txtYear.Location = New System.Drawing.Point(186, 32)
+        Me.txtYear.Location = New System.Drawing.Point(186, 62)
         Me.txtYear.Maximum = New Decimal(New Integer() {2999, 0, 0, 0})
         Me.txtYear.Minimum = New Decimal(New Integer() {1900, 0, 0, 0})
         Me.txtYear.Name = "txtYear"
@@ -830,7 +869,7 @@ Partial Class frmPrincipal
         'txtDay
         '
         Me.txtDay.Enabled = False
-        Me.txtDay.Location = New System.Drawing.Point(77, 32)
+        Me.txtDay.Location = New System.Drawing.Point(77, 62)
         Me.txtDay.Maximum = New Decimal(New Integer() {31, 0, 0, 0})
         Me.txtDay.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.txtDay.Name = "txtDay"
@@ -844,7 +883,7 @@ Partial Class frmPrincipal
         Me.cmbWeekday.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbWeekday.Enabled = False
         Me.cmbWeekday.FormattingEnabled = True
-        Me.cmbWeekday.Location = New System.Drawing.Point(289, 31)
+        Me.cmbWeekday.Location = New System.Drawing.Point(289, 61)
         Me.cmbWeekday.Name = "cmbWeekday"
         Me.cmbWeekday.Size = New System.Drawing.Size(48, 21)
         Me.cmbWeekday.TabIndex = 9
@@ -854,7 +893,7 @@ Partial Class frmPrincipal
         Me.cmbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbMonth.Enabled = False
         Me.cmbMonth.FormattingEnabled = True
-        Me.cmbMonth.Location = New System.Drawing.Point(131, 32)
+        Me.cmbMonth.Location = New System.Drawing.Point(131, 62)
         Me.cmbMonth.Name = "cmbMonth"
         Me.cmbMonth.Size = New System.Drawing.Size(48, 21)
         Me.cmbMonth.TabIndex = 6
@@ -862,7 +901,7 @@ Partial Class frmPrincipal
         'txtSeconds
         '
         Me.txtSeconds.Enabled = False
-        Me.txtSeconds.Location = New System.Drawing.Point(186, 10)
+        Me.txtSeconds.Location = New System.Drawing.Point(186, 40)
         Me.txtSeconds.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         Me.txtSeconds.Name = "txtSeconds"
         Me.txtSeconds.Size = New System.Drawing.Size(48, 20)
@@ -872,7 +911,7 @@ Partial Class frmPrincipal
         'txtMinutes
         '
         Me.txtMinutes.Enabled = False
-        Me.txtMinutes.Location = New System.Drawing.Point(131, 10)
+        Me.txtMinutes.Location = New System.Drawing.Point(131, 40)
         Me.txtMinutes.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         Me.txtMinutes.Name = "txtMinutes"
         Me.txtMinutes.Size = New System.Drawing.Size(48, 20)
@@ -882,7 +921,7 @@ Partial Class frmPrincipal
         'txtHour
         '
         Me.txtHour.Enabled = False
-        Me.txtHour.Location = New System.Drawing.Point(77, 10)
+        Me.txtHour.Location = New System.Drawing.Point(77, 40)
         Me.txtHour.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
         Me.txtHour.Name = "txtHour"
         Me.txtHour.Size = New System.Drawing.Size(48, 20)
@@ -898,63 +937,26 @@ Partial Class frmPrincipal
         Me.grpToolBox.Location = New System.Drawing.Point(3, 133)
         Me.grpToolBox.Name = "grpToolBox"
         Me.grpToolBox.Padding = New System.Windows.Forms.Padding(1, 0, 3, 2)
-        Me.grpToolBox.Size = New System.Drawing.Size(130, 465)
+        Me.grpToolBox.Size = New System.Drawing.Size(133, 475)
         Me.grpToolBox.TabIndex = 0
         Me.grpToolBox.TabStop = False
         Me.grpToolBox.Text = "Toolbox"
-        '
-        'chkNow
-        '
-        Me.chkNow.AutoSize = True
-        Me.chkNow.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkNow.Enabled = False
-        Me.chkNow.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkNow.Location = New System.Drawing.Point(495, 452)
-        Me.chkNow.Name = "chkNow"
-        Me.chkNow.Size = New System.Drawing.Size(44, 17)
-        Me.chkNow.TabIndex = 4
-        Me.chkNow.Text = "Now"
-        Me.chkNow.UseVisualStyleBackColor = True
-        '
-        'optModeTest
-        '
-        Me.optModeTest.AutoSize = True
-        Me.optModeTest.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.optModeTest.Location = New System.Drawing.Point(192, 452)
-        Me.optModeTest.Name = "optModeTest"
-        Me.optModeTest.Size = New System.Drawing.Size(265, 17)
-        Me.optModeTest.TabIndex = 3
-        Me.optModeTest.Text = "Simulation (can differ from real engine)"
-        Me.optModeTest.UseVisualStyleBackColor = True
-        '
-        'optModeEdit
-        '
-        Me.optModeEdit.AutoSize = True
-        Me.optModeEdit.Checked = True
-        Me.optModeEdit.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.optModeEdit.Location = New System.Drawing.Point(139, 452)
-        Me.optModeEdit.Name = "optModeEdit"
-        Me.optModeEdit.Size = New System.Drawing.Size(49, 17)
-        Me.optModeEdit.TabIndex = 2
-        Me.optModeEdit.TabStop = True
-        Me.optModeEdit.Text = "Edit"
-        Me.optModeEdit.UseVisualStyleBackColor = True
         '
         'pnlToolBox
         '
         Me.pnlToolBox.Controls.Add(Me.toolToolBox)
         Me.pnlToolBox.Location = New System.Drawing.Point(139, 3)
         Me.pnlToolBox.Name = "pnlToolBox"
-        Me.pnlToolBox.Size = New System.Drawing.Size(400, 41)
+        Me.pnlToolBox.Size = New System.Drawing.Size(483, 41)
         Me.pnlToolBox.TabIndex = 40
         '
         'toolToolBox
         '
         Me.toolToolBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolToolBox.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdSave, Me.txtName, Me.cmdLoad, Me.cmdXml, Me.cmdFileExplorer, Me.sep2, Me.lblX, Me.lblY, Me.cmdClear})
+        Me.toolToolBox.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cmdSave, Me.txtName, Me.sep1, Me.cmbResolution, Me.cmdLoad, Me.cmdXml, Me.cmdFileExplorer, Me.sep2, Me.lblX, Me.lblY, Me.cmdClear})
         Me.toolToolBox.Location = New System.Drawing.Point(0, 0)
         Me.toolToolBox.Name = "toolToolBox"
-        Me.toolToolBox.Size = New System.Drawing.Size(400, 41)
+        Me.toolToolBox.Size = New System.Drawing.Size(483, 41)
         Me.toolToolBox.TabIndex = 0
         Me.toolToolBox.Text = "ToolStrip1"
         '
@@ -975,6 +977,17 @@ Partial Class frmPrincipal
         Me.txtName.AutoSize = False
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(120, 29)
+        '
+        'sep1
+        '
+        Me.sep1.Name = "sep1"
+        Me.sep1.Size = New System.Drawing.Size(6, 41)
+        '
+        'cmbResolution
+        '
+        Me.cmbResolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbResolution.Name = "cmbResolution"
+        Me.cmbResolution.Size = New System.Drawing.Size(75, 41)
         '
         'cmdLoad
         '
@@ -1051,9 +1064,9 @@ Partial Class frmPrincipal
         '
         'staBar
         '
-        Me.staBar.Location = New System.Drawing.Point(0, 631)
+        Me.staBar.Location = New System.Drawing.Point(0, 639)
         Me.staBar.Name = "staBar"
-        Me.staBar.Size = New System.Drawing.Size(1132, 22)
+        Me.staBar.Size = New System.Drawing.Size(1054, 22)
         Me.staBar.TabIndex = 1
         '
         'mnuPrincipal
@@ -1063,7 +1076,7 @@ Partial Class frmPrincipal
         Me.mnuPrincipal.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.mnuPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.mnuPrincipal.Name = "mnuPrincipal"
-        Me.mnuPrincipal.Size = New System.Drawing.Size(1132, 26)
+        Me.mnuPrincipal.Size = New System.Drawing.Size(1054, 26)
         Me.mnuPrincipal.TabIndex = 0
         Me.mnuPrincipal.Text = "Main menu"
         '
@@ -1110,14 +1123,14 @@ Partial Class frmPrincipal
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(1132, 653)
+        Me.ClientSize = New System.Drawing.Size(1054, 661)
         Me.Controls.Add(Me.mnuPrincipal)
         Me.Controls.Add(Me.splPrincipal)
         Me.Controls.Add(Me.staBar)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(1048, 680)
+        Me.MinimumSize = New System.Drawing.Size(1070, 700)
         Me.Name = "frmPrincipal"
         Me.Text = "ClockSkinMaker"
         CType(Me.txtCenterX, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1133,7 +1146,6 @@ Partial Class frmPrincipal
         CType(Me.txtMulRotate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.splPrincipal.Panel1.ResumeLayout(False)
         Me.splPrincipal.Panel2.ResumeLayout(False)
-        Me.splPrincipal.Panel2.PerformLayout()
         CType(Me.splPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.splPrincipal.ResumeLayout(False)
         Me.tblExplorer.ResumeLayout(False)
@@ -1253,4 +1265,6 @@ Partial Class frmPrincipal
     Friend WithEvents cmdFileExplorer As ToolStripButton
     Friend WithEvents mnuPrincAbout As ToolStripMenuItem
     Friend WithEvents mnuPrincHelp As ToolStripSplitButton
+    Friend WithEvents cmbResolution As ToolStripComboBox
+    Friend WithEvents sep1 As ToolStripSeparator
 End Class

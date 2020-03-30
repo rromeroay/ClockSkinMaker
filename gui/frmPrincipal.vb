@@ -31,8 +31,12 @@ Public Class frmPrincipal
         InitializeComponent()
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        canvas = New CSkinCanvas(Me.pnlCanvas)
         Me.dirWatcher.Path = PATH_SKINS
+
+        Me.cmbResolution.Items.Clear()
+        Me.cmbResolution.Items.Add("400x400")
+        Me.cmbResolution.Items.Add("640x480")
+        Me.cmbResolution.SelectedIndex = 0
     End Sub
 
     Private Sub mnuPrincAbout_Click(sender As Object, e As EventArgs) Handles mnuPrincAbout.Click
@@ -679,7 +683,7 @@ Public Class frmPrincipal
         cmbMoon.Enabled = canvas.Mode = TIPO_MODO.TEST OrElse canvas.Mode = TIPO_MODO.NOW
         cmbWeather.Enabled = canvas.Mode = TIPO_MODO.TEST OrElse canvas.Mode = TIPO_MODO.NOW
 
-        grpMode.Visible = canvas.Mode = TIPO_MODO.TEST OrElse canvas.Mode = TIPO_MODO.NOW
+        'grpMode.Visible = canvas.Mode = TIPO_MODO.TEST OrElse canvas.Mode = TIPO_MODO.NOW
     End Sub
 
     Private Sub txtTest_ValueChanged(sender As Object, e As EventArgs) Handles txtHour.ValueChanged, txtMinutes.ValueChanged, txtSeconds.ValueChanged, txtBatt.ValueChanged, txtDay.ValueChanged, txtYear.ValueChanged, txtHeart.ValueChanged, txtTemperature.ValueChanged, txtSteps.ValueChanged
@@ -705,6 +709,22 @@ Public Class frmPrincipal
             Case sender Is cmbWeather : If cmbWeather.SelectedIndex >= 0 Then canvas.Weather = cmbWeather.SelectedIndex
         End Select
     End Sub
+
+    Private Sub cmbResolution_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbResolution.SelectedIndexChanged
+        Dim res() As String = cmbResolution.SelectedItem.ToString.Split("x")
+
+        optModeEdit.Checked = True
+        If Not canvas Is Nothing Then canvas.Clear() : Show_Clock()
+
+        canvas = New CSkinCanvas(Me.pnlCanvas, res(0), res(1))
+        pnlCanvas.Width = res(0)
+        pnlCanvas.Height = res(1)
+
+        Me.Width = tblExplorer.Width + splPrincipal.SplitterWidth + 3 + grpToolBox.Width + 3 + pnlCanvas.Width + 3 + grpCanvas.Width + 28
+        Me.Height = mnuPrincipal.Height + 3 + toolToolBox.Height + 3 + pnlCanvas.Height + 3 + grpMode.Height + 3 + staBar.Height + 42
+        Me.ResizeRedraw = True
+    End Sub
+
 End Class
 
 

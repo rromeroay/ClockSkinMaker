@@ -36,6 +36,20 @@ Public Class CSkinCanvas
         End Get
     End Property
 
+    Private _width As Integer = 400
+    Public ReadOnly Property Width As Integer
+        Get
+            Return Me._width
+        End Get
+    End Property
+
+    Public _height As Integer = 400
+    Public ReadOnly Property Height As Integer
+        Get
+            Return Me._height
+        End Get
+    End Property
+
     Private WithEvents Window As Panel
     Private WithEvents Sizer As CPictureBoxTransparent
 
@@ -50,8 +64,9 @@ Public Class CSkinCanvas
     Private bCambiandoTam As Boolean = False
     Private MoveOffset As Point
     Private MousePosition As New Point(0, 0)
+
     Private Sub Window_MouseMove(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles Window.MouseMove
-        Me.MousePosition = Me.Window.PointToClient(Cursor.Position) - New Point(200, 200)
+        Me.MousePosition = Me.Window.PointToClient(Cursor.Position) - New Point(Me.Width / 2, Me.Height / 2)
         RaiseEvent OnMouseMove(Me, Me.MousePosition)
     End Sub
     Private Sub Sizer_MouseDown(sender As Object, e As MouseEventArgs) Handles Sizer.MouseDown
@@ -131,7 +146,7 @@ Public Class CSkinCanvas
                         Case TIPO_MODO.EDIT
                             Select Case elemento.Tipo
                                 Case TIPO_ELEMENTO.array_arc_battery, TIPO_ELEMENTO.array_arc_steps, TIPO_ELEMENTO.array_special_second
-                                    e.Graphics.DrawImage(elemento.Imagen, 0, 0, 400, 400)
+                                    e.Graphics.DrawImage(elemento.Imagen, 0, 0, Me.Width, Me.Height)
                                 Case Else
                                     e.Graphics.DrawImage(elemento.Imagen, elemento.Left, elemento.Top, elemento.Width, elemento.Height)
                             End Select
@@ -160,7 +175,7 @@ Public Class CSkinCanvas
                                 Case TIPO_ELEMENTO.array_arc_battery, TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.rotate_battery : value = Me.Batt
                             End Select
 
-                            e.Graphics.DrawImage(elemento.Sample(value), 0, 0, 400, 400) 'Los samples van sobre 400x400,para que esté visible tenga el angulo que tenga
+                            e.Graphics.DrawImage(elemento.Sample(value), 0, 0, Me.Width, Me.Height) 'Los samples van sobre 400x400,para que esté visible tenga el angulo que tenga
                         Case TIPO_MODO.TEST
                             If elemento.Status <> ESTADO_ELEMENTO.LOADED Then Continue For
 
@@ -188,7 +203,7 @@ Public Class CSkinCanvas
                                 Case TIPO_ELEMENTO.array_special_second : value = Me.Seconds
                             End Select
 
-                            e.Graphics.DrawImage(elemento.Sample(value), 0, 0, 400, 400) 'Los samples van sobre 400x400,para que esté visible tenga el angulo que tenga
+                            e.Graphics.DrawImage(elemento.Sample(value), 0, 0, Me.Width, Me.Height) 'Los samples van sobre 400x400,para que esté visible tenga el angulo que tenga
                     End Select
                 End If
             Next
@@ -237,10 +252,13 @@ Public Class CSkinCanvas
         Me.Window.Invalidate()
     End Sub
 
-    Public Sub New(preview As Panel)
+    Public Sub New(preview As Panel, ancho As Integer, alto As Integer)
+        Me._width = ancho
+        Me._height = alto
+
         Me.Window = preview
-        Me.Window.Width = 400
-        Me.Window.Height = 400
+        Me.Window.Width = Me.Width
+        Me.Window.Height = Me._height
         Me.Window.BackgroundImage = My.Resources.canvas
         Me.Window.BackColor = Color.Transparent
 
@@ -454,9 +472,9 @@ Public Class CSkinCanvas
                             Case TIPO_ELEMENTO.array_arc_battery, TIPO_ELEMENTO.array_battery_level, TIPO_ELEMENTO.rotate_battery : value = 55
                         End Select
 
-                        g.DrawImage(element.Sample(value), 0, 0, 400, 400) 'Los samples van sobre 400x400,para que esté visible tenga el angulo que tenga
+                        g.DrawImage(element.Sample(value), 0, 0, Me.Width, Me.Height) 'Los samples van sobre 400x400,para que esté visible tenga el angulo que tenga
                     Next
-                    g.DrawImage(My.Resources.sign, 0, 0, 400, 400)
+                    g.DrawImage(My.Resources.sign, 0, 0, Me.Width, Me.Height)
 
                 End Using
                 bmp.Save(String.Format("{0}\clock_skin_model.png", ruta), Imaging.ImageFormat.Png)
